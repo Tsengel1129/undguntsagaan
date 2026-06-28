@@ -516,9 +516,9 @@ export const TREASURES: Treasure[] = [
       "Placeholder copy. The image is a representative antique bottle; replace with a real хөөрөг.",
     ],
     images: [
-      U("photo-1517163544645-d4c2e89ed3eb", 1600), // TODO: replace with real хөөрөг
-      U("photo-1566557087503-b839ce6e5aa0", 1200),
-      U("photo-1598866971869-22782ffd918e", 1200),
+      U("photo-1631199320193-2a8fcde93786", 1600), // real snuff bottle. TODO: replace with authentic Mongolian хөөрөг
+      U("photo-1680189186470-374b8679ec91", 1200),
+      U("photo-1561121947-2e62aa3f4854", 1200),
     ],
   },
   {
@@ -534,9 +534,9 @@ export const TREASURES: Treasure[] = [
       "Placeholder copy — representative imagery; swap for a genuine хөөрөг.",
     ],
     images: [
-      U("photo-1598866971869-22782ffd918e", 1600), // TODO: replace with real хөөрөг
-      U("photo-1621274784001-2269206f5813", 1200),
-      U("photo-1682335926245-2a6d54e07029", 1200),
+      U("photo-1613306817574-7e31e63d4364", 1600), // real snuff bottles (museum display). TODO: replace with authentic Mongolian хөөрөг
+      U("photo-1696141125149-74bd610b655a", 1200),
+      U("photo-1631199320193-2a8fcde93786", 1200),
     ],
   },
   {
@@ -552,9 +552,9 @@ export const TREASURES: Treasure[] = [
       "Placeholder copy — representative imagery.",
     ],
     images: [
-      U("photo-1621274784001-2269206f5813", 1600), // TODO: replace with real хөөрөг
-      U("photo-1682335926245-2a6d54e07029", 1200),
-      U("photo-1517163544645-d4c2e89ed3eb", 1200),
+      U("photo-1561121947-2e62aa3f4854", 1600), // real snuff bottles (painted set). TODO: replace with authentic Mongolian хөөрөг
+      U("photo-1680189186470-374b8679ec91", 1200),
+      U("photo-1613306817574-7e31e63d4364", 1200),
     ],
   },
   {
@@ -688,7 +688,7 @@ export const ARTICLES: Article[] = [
     readTime: "6 min read",
     excerpt:
       "What stone, stopper and silverwork reveal about the age and story of a хөөрөг.",
-    lead: U("photo-1517163544645-d4c2e89ed3eb", 2000),
+    lead: U("photo-1680189186470-374b8679ec91", 2000),
     pullQuote:
       "Hold a bottle to the light and it will tell you almost everything — if you know how to look.",
     body: [
@@ -699,9 +699,9 @@ export const ARTICLES: Article[] = [
       "Start, as ever, by handling as many bottles as you can. The eye is trained by comparison, and there is no substitute for the weight and cool of real stone in the palm.",
     ],
     inlineImages: [
-      U("photo-1566557087503-b839ce6e5aa0", 1600),
-      U("photo-1598866971869-22782ffd918e", 1200),
-      U("photo-1621274784001-2269206f5813", 1200),
+      U("photo-1631199320193-2a8fcde93786", 1600),
+      U("photo-1613306817574-7e31e63d4364", 1200),
+      U("photo-1561121947-2e62aa3f4854", 1200),
     ],
   },
   {
