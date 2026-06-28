@@ -2,14 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import { StandardCard, WideCard } from "@/components/editorial";
-import {
-  ARTICLES,
-  RACEHORSES,
-  SITE,
-  STEPPE,
-  TRAINERS,
-  TREASURES,
-} from "@/lib/content";
+import { ARTICLES, RACEHORSES, SITE, TRAINERS, TREASURES } from "@/lib/content";
 
 /* HOME — modern showcase pulling together previews of every section.
    Body copy is placeholder; images are real Unsplash photos (lib/content.ts). */
@@ -52,8 +45,8 @@ export default function HomePage() {
       <section className="relative isolate overflow-hidden">
         <div className="absolute inset-0 -z-10">
           <Image
-            src={STEPPE.hero}
-            alt="Horses on the open Mongolian steppe at dusk"
+            src="/images/hero.jpg"
+            alt="A white horse galloping at dusk"
             fill
             priority
             sizes="100vw"
