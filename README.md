@@ -33,27 +33,45 @@ npm run dev      # http://localhost:3000
 npm run build    # production build
 ```
 
-## ⚠️ Placeholders
+## Content & images
 
-All body copy lives in [`lib/content.ts`](lib/content.ts) and is **placeholder
-text**. All images in `public/images/` are **labelled placeholder JPGs**.
-Replace both with real content when ready.
+- **Copy** — all body text lives in [`lib/content.ts`](lib/content.ts) and is
+  realistic English **placeholder** text. Edit it there.
+- **Images** — every image is a real, license-free photo from
+  [Unsplash](https://unsplash.com) (`images.unsplash.com`, free for commercial
+  use). Each photo ID was verified to return HTTP 200 before being added. They
+  are all referenced from `lib/content.ts` via the `U(photoId, width)` helper,
+  so there is a single place to swap them.
 
-### Image map — drop real Mongolian photos over these files
+### How to replace an image
 
-Keep the **same file names** and the layout will pick them up automatically.
+1. Open [`lib/content.ts`](lib/content.ts).
+2. Find the item (horse, trainer, treasure or article) and its `images` /
+   `lead` / `inlineImages` field.
+3. Either change the Unsplash photo ID inside `U("photo-XXXX", 1600)`, or
+   replace the whole string with your own image URL (or a local `/...` path you
+   add under `public/`).
 
-| File(s)                         | Replace with                                  | Aspect |
-| ------------------------------- | --------------------------------------------- | ------ |
-| `hero.jpg`                      | Hero photo (horses on the steppe)             | 16:9   |
-| `racehorse-1.jpg` … `-9.jpg`    | Racehorse photos (морьд)                       | 4:3    |
-| `trainer-1.jpg` … `-9.jpg`      | Trainer portraits (уяачид)                      | 4:5    |
-| `het-hutga-1.jpg` … `-3.jpg`    | Belt knife sets (хэт хутга)                     | 1:1    |
-| `hoorog-1.jpg` … `-3.jpg`       | Snuff bottles (хөөрөг)                          | 1:1    |
-| `silver-1.jpg` … `-3.jpg`       | Silver / heritage craft (мөнгөн эдлэл)          | 1:1    |
-| `magazine-1.jpg` … `-6.jpg`     | Article cover images                          | 3:2    |
+`next.config.mjs` allow-lists `images.unsplash.com` under
+`images.remotePatterns`. If you switch to another remote host, add it there.
 
-To regenerate the placeholder images: `python3 scripts/gen_placeholders.py`
+### Heritage images — read this
+
+Authentic **хэт хутга** (belt knife sets) and **хөөрөг** (snuff bottles) are
+rare on Unsplash, so the heritage section uses the closest relevant
+antique-knife / silver / antique-bottle imagery. Every such image is tagged with
+a `// TODO: replace with real Mongolian photo` comment in `lib/content.ts` —
+swap these for authentic Mongolian product photography when available.
+
+### Image themes by section
+
+| Section            | Theme                                              |
+| ------------------ | -------------------------------------------------- |
+| Hero / About       | Steppe & horse landscape                           |
+| Racehorses         | Horses, galloping, close-ups                       |
+| Trainers           | Riders, herders, people with horses                |
+| Heritage Treasures | Antique knives, silver craft, antique bottles      |
+| Magazine           | Steppe, horses, craft (varied per article)         |
 
 ### Logo & favicon
 

@@ -1,21 +1,29 @@
-import Image from "next/image";
 import type { Metadata } from "next";
 import Reveal from "@/components/Reveal";
+import { FeatureCard, StandardCard, WideCard } from "@/components/editorial";
 import { TREASURES } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Heritage Treasures",
   description:
-    "Traditional Mongolian heritage treasures — хэт хутга belt knife sets, carved хөөрөг snuff bottles and heirloom silverwork.",
+    "Traditional Mongolian heritage treasures — belt knife sets (хэт хутга), snuff bottles (хөөрөг) and heirloom silverwork.",
 };
 
 /* Heritage = traditional Mongolian valuables (NOT Western jewelry).
-   Placeholder copy and images — see lib/content.ts and README image map. */
+   Images are the closest relevant antique/craft/silver imagery on Unsplash —
+   see TODO notes in lib/content.ts for swapping in real Mongolian product photos. */
+
+const ASPECTS = ["square", "portrait", "landscape"] as const;
 
 export default function HeritagePage() {
+  const [featured, ...rest] = TREASURES;
+  const firstThree = rest.slice(0, 3);
+  const wide = rest[3];
+  const remaining = rest.slice(4);
+
   return (
     <>
-      {/* Dark, gold-accented luxury header for the heritage section */}
+      {/* Dark, gold-accented luxury header */}
       <header className="relative overflow-hidden bg-charcoal text-cream">
         <div className="pointer-events-none absolute inset-0 opacity-[0.07]">
           <div
@@ -28,53 +36,72 @@ export default function HeritagePage() {
         </div>
         <div className="mx-auto max-w-page px-5 pb-16 pt-20 md:px-8 md:pb-24 md:pt-28">
           <Reveal>
-            <p className="eyebrow text-xs text-gold-soft">
-              Өв соёл · Heritage Treasures
-            </p>
+            <p className="eyebrow text-xs text-gold-soft">Heritage Treasures</p>
             <h1 className="mt-4 max-w-3xl font-serif text-4xl font-semibold leading-[1.05] md:text-6xl">
               Living treasures of the Mongolian steppe
             </h1>
             <p className="mt-6 max-w-2xl text-base leading-relaxed text-cream/70 md:text-lg">
-              Beyond the racetrack, Mongolia's heritage lives in objects of
-              quiet luxury — хэт хутга belt knife sets, carved хөөрөг snuff
-              bottles and heirloom silverwork, each carrying generations of
-              craft and meaning.
+              Beyond the racetrack, Mongolia's heritage lives in objects of quiet
+              luxury — belt knife sets (хэт хутга), carved snuff bottles (хөөрөг)
+              and heirloom silverwork, each carrying generations of craft and
+              meaning.
             </p>
           </Reveal>
         </div>
       </header>
 
       <section className="bg-ivory">
-        <div className="mx-auto max-w-page px-5 py-16 md:px-8 md:py-24">
+        <div className="mx-auto max-w-page space-y-8 px-5 py-16 md:px-8 md:py-24">
+          <FeatureCard
+            href={`/heritage/${featured.slug}`}
+            image={featured.images[0]}
+            eyebrow={`${featured.category} · ${featured.term}`}
+            title={featured.name}
+            text={featured.summary}
+            accent="gold"
+          />
+
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            {TREASURES.map((item, i) => (
-              <Reveal key={item.name} delay={(i % 3) * 0.07}>
-                <article className="card-lift group flex h-full flex-col overflow-hidden rounded-sm border border-gold/20 bg-white">
-                  <div className="relative aspect-square overflow-hidden bg-charcoal">
-                    <Image
-                      src={item.image}
-                      alt={`${item.name} (${item.term})`}
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      className="object-cover transition-transform duration-700 ease-editorial group-hover:scale-105"
-                    />
-                  </div>
-                  <div className="flex flex-1 flex-col p-6">
-                    <h2 className="font-serif text-2xl font-semibold text-charcoal">
-                      {item.name}{" "}
-                      <span className="font-sans text-sm font-normal text-gold-deep">
-                        ({item.term})
-                      </span>
-                    </h2>
-                    <p className="mt-3 flex-1 text-sm leading-relaxed text-ink/70">
-                      {item.description}
-                    </p>
-                    <p className="mt-5 border-t border-gold/20 pt-4 text-xs tracking-wide text-gold-deep">
-                      {item.material}
-                    </p>
-                  </div>
-                </article>
-              </Reveal>
+            {firstThree.map((t, i) => (
+              <StandardCard
+                key={t.slug}
+                href={`/heritage/${t.slug}`}
+                image={t.images[0]}
+                eyebrow={`${t.term} · ${t.category}`}
+                title={t.name}
+                meta={t.material}
+                text={t.summary}
+                aspect={ASPECTS[i % ASPECTS.length]}
+                accent="gold"
+                delay={(i % 3) * 0.07}
+              />
+            ))}
+          </div>
+
+          <WideCard
+            href={`/heritage/${wide.slug}`}
+            image={wide.images[0]}
+            eyebrow={`${wide.term} · ${wide.category}`}
+            title={wide.name}
+            meta={wide.material}
+            text={wide.summary}
+            accent="gold"
+          />
+
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {remaining.map((t, i) => (
+              <StandardCard
+                key={t.slug}
+                href={`/heritage/${t.slug}`}
+                image={t.images[0]}
+                eyebrow={`${t.term} · ${t.category}`}
+                title={t.name}
+                meta={t.material}
+                text={t.summary}
+                aspect={ASPECTS[(i + 2) % ASPECTS.length]}
+                accent="gold"
+                delay={(i % 3) * 0.07}
+              />
             ))}
           </div>
         </div>

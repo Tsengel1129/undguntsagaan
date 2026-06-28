@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import PageHeader from "@/components/PageHeader";
 import Reveal from "@/components/Reveal";
+import { STEPPE } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "About",
@@ -9,7 +11,7 @@ export const metadata: Metadata = {
     "About Undgun Tsagaan — Mongolia's magazine of racing bloodlines, master trainers and heritage treasures.",
 };
 
-/* Placeholder about copy. */
+/* Placeholder about copy; image is a real Unsplash steppe photo. */
 
 export default function AboutPage() {
   return (
@@ -19,6 +21,19 @@ export default function AboutPage() {
         title="Mongolia's magazine of horse and heritage"
         intro="Undgun Tsagaan (Өндгөн цагаан) celebrates the racing horse, the master trainer and the living heritage of the Mongolian steppe."
       />
+
+      <Reveal>
+        <div className="relative aspect-[21/9] w-full overflow-hidden">
+          <Image
+            src={STEPPE.wide3}
+            alt="Wide view of the Mongolian steppe"
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+        </div>
+      </Reveal>
 
       <section className="mx-auto max-w-page px-5 py-16 md:px-8 md:py-24">
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr]">
