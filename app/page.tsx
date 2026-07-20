@@ -97,7 +97,7 @@ export default function HomePage() {
         <div className="mx-auto grid max-w-page gap-8 px-5 py-16 md:grid-cols-[1fr_auto] md:items-end md:px-8">
           <Reveal>
             <h2 className="max-w-3xl font-serif text-3xl font-medium leading-tight text-charcoal md:text-5xl">
-              A magazine devoted to the horse, the trainer and the heritage of the Mongolian steppe
+              A magazine devoted to the horse, the trainer and the heritage of the Mongolian steppe.
             </h2>
           </Reveal>
           <Reveal delay={0.1}>
