@@ -15,7 +15,7 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Lenis smooth scroll — disable native smooth behaviour when JS is active */
+/* Lenis smooth scroll -— disable native smooth behaviour when JS is active */
 html.lenis,
 html.lenis body {
   height: auto;
