@@ -1,8 +1,10 @@
 import Link from "next/link";
-import { NAV, SITE } from "@/lib/content";
+import { NAV } from "@/lib/nav";
+import { getSiteSettings } from "@/lib/firebase/queries";
 import Logo from "./Logo";
 
-export default function Footer() {
+export default async function Footer() {
+  const site = await getSiteSettings();
   return (
     <footer className="mt-24 bg-charcoal text-cream">
       <div className="mx-auto grid max-w-page gap-12 px-5 py-16 md:grid-cols-3 md:px-8">
@@ -11,7 +13,7 @@ export default function Footer() {
             <Logo markColor="#E23A52" />
           </div>
           <p className="mt-5 max-w-xs text-sm leading-relaxed text-cream/70">
-            {SITE.tagline}
+            {site.tagline}
           </p>
         </div>
 
@@ -36,21 +38,21 @@ export default function Footer() {
           <address className="mt-5 space-y-3 text-sm not-italic text-cream/80">
             <p>
               <a
-                href={`mailto:${SITE.email}`}
+                href={`mailto:${site.email}`}
                 className="transition-colors hover:text-red-soft"
               >
-                {SITE.email}
+                {site.email}
               </a>
             </p>
             <p>
               <a
-                href={`tel:${SITE.phone}`}
+                href={`tel:${site.phone}`}
                 className="transition-colors hover:text-red-soft"
               >
-                {SITE.phone}
+                {site.phone}
               </a>
             </p>
-            <p className="leading-relaxed text-cream/70">{SITE.address}</p>
+            <p className="leading-relaxed text-cream/70">{site.address}</p>
           </address>
         </div>
       </div>
@@ -58,7 +60,7 @@ export default function Footer() {
       <div className="border-t border-cream/10">
         <div className="mx-auto flex max-w-page flex-col items-center justify-between gap-2 px-5 py-6 text-xs text-cream/50 md:flex-row md:px-8">
           <p>
-            © {2026} {SITE.name} · {SITE.nameMn}. All rights reserved.
+            © {2026} {site.name} · {site.nameMn}. All rights reserved.
           </p>
           <p>Mongolia's magazine of horse heritage.</p>
         </div>

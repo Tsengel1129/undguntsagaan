@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
+import ContentImage from "./ContentImage";
 import Reveal from "./Reveal";
 
 /* ─────────────────────────────────────────────────────────────
@@ -7,6 +7,14 @@ import Reveal from "./Reveal";
    Mix and alternate these so list pages and articles avoid the
    "every block identical" look. All text-over-image variants
    carry a scrim for legibility.
+
+   Design-integrity rules (CMS content is unpredictable):
+   - every image sits in a fixed-aspect box, centered, with a palette
+     placeholder on failure; legacy Unsplash photos keep the original
+     cover-crop while new uploads render uncropped (see ContentImage);
+   - text clamps bound line counts (sized so no seeded string is ever
+     truncated), so every card in a grid keeps exactly the same height
+     regardless of content length.
    ───────────────────────────────────────────────────────────── */
 
 type Accent = "red" | "gold";
@@ -22,7 +30,7 @@ export function FeatureCard({
   accent = "red",
 }: {
   href: string;
-  image: string;
+  image?: string;
   eyebrow: string;
   title: string;
   text: string;
@@ -35,22 +43,22 @@ export function FeatureCard({
         className="card-lift group relative block overflow-hidden rounded-sm bg-charcoal"
       >
         <div className="relative aspect-[16/10] md:aspect-[21/9]">
-          <Image
+          <ContentImage
             src={image}
             alt={title}
-            fill
+            tone="dark"
             priority
             sizes="(max-width: 1024px) 100vw, 1240px"
-            className="object-cover opacity-85 transition-transform duration-700 ease-editorial group-hover:scale-105"
+            imgClassName="opacity-85 transition-transform duration-700 ease-editorial group-hover:scale-105"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/40 to-transparent" />
         </div>
         <div className="absolute inset-x-0 bottom-0 p-7 md:p-12">
           <p className={`eyebrow text-[11px] ${accentText(accent)}`}>{eyebrow}</p>
-          <h2 className="mt-3 max-w-2xl font-serif text-4xl font-semibold text-cream md:text-6xl">
+          <h2 className="mt-3 max-w-2xl font-serif text-4xl font-semibold text-cream line-clamp-3 md:text-6xl">
             {title}
           </h2>
-          <p className="mt-3 max-w-xl text-sm text-cream/80 md:text-base">{text}</p>
+          <p className="mt-3 max-w-xl text-sm text-cream/80 line-clamp-3 md:text-base">{text}</p>
           <span className={`mt-5 inline-flex items-center gap-2 text-sm font-semibold ${accentText(accent)}`}>
             Read more
             <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
@@ -73,7 +81,7 @@ export function WideCard({
   delay = 0,
 }: {
   href: string;
-  image: string;
+  image?: string;
   eyebrow: string;
   title: string;
   text: string;
@@ -88,23 +96,22 @@ export function WideCard({
         className="card-lift group grid overflow-hidden rounded-sm bg-white shadow-[0_8px_30px_-18px_rgba(26,23,20,0.3)] sm:grid-cols-2"
       >
         <div className="relative aspect-[4/3] overflow-hidden sm:aspect-auto">
-          <Image
+          <ContentImage
             src={image}
             alt={title}
-            fill
             sizes="(max-width: 640px) 100vw, 50vw"
-            className="object-cover transition-transform duration-700 ease-editorial group-hover:scale-105"
+            imgClassName="transition-transform duration-700 ease-editorial group-hover:scale-105"
           />
         </div>
         <div className="flex flex-col justify-center p-7 md:p-9">
           <p className={`eyebrow text-[11px] ${accent === "gold" ? "text-gold-deep" : "text-red"}`}>
             {eyebrow}
           </p>
-          <h3 className="mt-3 font-serif text-2xl font-semibold text-charcoal md:text-3xl">
+          <h3 className="mt-3 font-serif text-2xl font-semibold text-charcoal line-clamp-2 md:text-3xl">
             {title}
           </h3>
-          {meta && <p className="mt-1 text-xs text-ink/50">{meta}</p>}
-          <p className="mt-3 text-sm leading-relaxed text-ink/70">{text}</p>
+          {meta && <p className="mt-1 text-xs text-ink/50 line-clamp-1">{meta}</p>}
+          <p className="mt-3 text-sm leading-relaxed text-ink/70 line-clamp-3">{text}</p>
           <span className={`mt-4 inline-flex items-center gap-2 text-sm font-semibold ${accent === "gold" ? "text-gold-deep" : "text-red"}`}>
             Read more
             <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
@@ -129,7 +136,7 @@ export function StandardCard({
   delay = 0,
 }: {
   href: string;
-  image: string;
+  image?: string;
   eyebrow?: string;
   title: string;
   text: string;
@@ -152,12 +159,11 @@ export function StandardCard({
         className="card-lift group flex h-full flex-col overflow-hidden rounded-sm bg-white shadow-[0_8px_30px_-18px_rgba(26,23,20,0.3)]"
       >
         <div className={`relative overflow-hidden ${ar}`}>
-          <Image
+          <ContentImage
             src={image}
             alt={title}
-            fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            className="object-cover transition-transform duration-700 ease-editorial group-hover:scale-105"
+            imgClassName="transition-transform duration-700 ease-editorial group-hover:scale-105"
           />
           {badge && (
             <span className="absolute left-4 top-4 bg-red px-3 py-1 text-xs font-semibold tracking-wide text-cream">
@@ -171,11 +177,14 @@ export function StandardCard({
               {eyebrow}
             </p>
           )}
-          <h3 className="mt-2 font-serif text-2xl font-semibold leading-snug text-charcoal transition-colors group-hover:text-red">
+          <h3 className="mt-2 font-serif text-2xl font-semibold leading-snug text-charcoal transition-colors line-clamp-2 group-hover:text-red">
             {title}
           </h3>
-          {meta && <p className="mt-1 text-xs text-ink/50">{meta}</p>}
-          <p className="mt-3 flex-1 text-sm leading-relaxed text-ink/70">{text}</p>
+          {meta && <p className="mt-1 text-xs text-ink/50 line-clamp-1">{meta}</p>}
+          {/* flex-1 lives on the wrapper: flex-grow on the <p> itself disables line-clamp in Chrome */}
+          <div className="mt-3 flex-1">
+            <p className="text-sm leading-relaxed text-ink/70 line-clamp-3">{text}</p>
+          </div>
         </div>
       </Link>
     </Reveal>
@@ -184,12 +193,12 @@ export function StandardCard({
 
 /* ── Article body image treatments ── */
 
-export function FullBleedImage({ src, alt, caption }: { src: string; alt: string; caption?: string }) {
+export function FullBleedImage({ src, alt, caption }: { src?: string; alt: string; caption?: string }) {
   return (
     <Reveal>
       <figure className="my-12">
         <div className="relative aspect-[21/9] w-full overflow-hidden rounded-sm">
-          <Image src={src} alt={alt} fill sizes="100vw" className="object-cover" />
+          <ContentImage src={src} alt={alt} sizes="100vw" />
         </div>
         {caption && <figcaption className="mt-3 text-xs text-ink/50">{caption}</figcaption>}
       </figure>
@@ -197,13 +206,13 @@ export function FullBleedImage({ src, alt, caption }: { src: string; alt: string
   );
 }
 
-export function SplitImages({ a, b, alt }: { a: string; b: string; alt: string }) {
+export function SplitImages({ a, b, alt }: { a?: string; b?: string; alt: string }) {
   return (
     <Reveal>
       <div className="my-12 grid gap-4 sm:grid-cols-2">
         {[a, b].map((src, i) => (
           <div key={i} className="relative aspect-[4/3] overflow-hidden rounded-sm">
-            <Image src={src} alt={`${alt} (${i + 1})`} fill sizes="(max-width:640px) 100vw, 50vw" className="object-cover" />
+            <ContentImage src={src} alt={`${alt} (${i + 1})`} sizes="(max-width:640px) 100vw, 50vw" />
           </div>
         ))}
       </div>
@@ -211,12 +220,12 @@ export function SplitImages({ a, b, alt }: { a: string; b: string; alt: string }
   );
 }
 
-export function FloatImage({ src, alt }: { src: string; alt: string }) {
+export function FloatImage({ src, alt }: { src?: string; alt: string }) {
   return (
     <Reveal>
       <figure className="my-4 sm:float-right sm:ml-8 sm:w-[44%]">
         <div className="relative aspect-[4/5] overflow-hidden rounded-sm">
-          <Image src={src} alt={alt} fill sizes="(max-width:640px) 100vw, 44vw" className="object-cover" />
+          <ContentImage src={src} alt={alt} sizes="(max-width:640px) 100vw, 44vw" />
         </div>
       </figure>
     </Reveal>
@@ -250,7 +259,7 @@ export function Gallery({ images, alt }: { images: string[]; alt: string }) {
               images.length % 2 === 1 && i === 0 ? "sm:col-span-2 aspect-[21/9]" : "aspect-[4/3]"
             }`}
           >
-            <Image src={src} alt={`${alt} (${i + 1})`} fill sizes="(max-width:640px) 100vw, 50vw" className="object-cover" />
+            <ContentImage src={src} alt={`${alt} (${i + 1})`} sizes="(max-width:640px) 100vw, 50vw" />
           </div>
         ))}
       </div>

@@ -26,9 +26,9 @@ export default function Logo({ className = "", showText = true }: LogoProps) {
       {showText && (
         <span className="flex flex-col leading-none">
           <span className="font-serif text-xl font-semibold tracking-wide">
-            Undgun Tsagaan
+            Uhaantai Mori
           </span>
-          <span className="eyebrow text-[10px] opacity-60">Өндгөн цагаан</span>
+          <span className="eyebrow text-[10px] opacity-60">Ухаантай Морь</span>
         </span>
       )}
     </span>

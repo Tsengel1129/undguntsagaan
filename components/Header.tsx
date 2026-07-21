@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { NAV } from "@/lib/content";
+import { NAV } from "@/lib/nav";
 import Logo from "./Logo";
 
 export default function Header() {
