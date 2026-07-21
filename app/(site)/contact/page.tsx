@@ -9,7 +9,7 @@ export const revalidate = 60;
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Contact Undgun Tsagaan — email, phone and address, plus a message form.",
+    "Contact Uhaantai Mori— email, phone and address, plus a message form.",
 };
 
 export default async function ContactPage() {

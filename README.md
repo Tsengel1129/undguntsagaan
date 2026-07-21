@@ -1,6 +1,6 @@
-# Undgun Tsagaan — Өндгөн цагаан
+# Uhaantai Mori— Ухаантай Морь
 
-Multi-page website for **Undgun Tsagaan (Өндгөн цагаан)**, a Mongolian horse
+Multi-page website for **Uhaantai Mori(Ухаантай Морь)**, a Mongolian horse
 heritage magazine. All UI text is in English; the subject matter and imagery are
 Mongolian — racing horses (морьд), trainers (уяачид) and heritage treasures
 (хэт хутга, хөөрөг, silverwork).

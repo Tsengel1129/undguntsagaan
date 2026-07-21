@@ -19,11 +19,11 @@ const manrope = Manrope({
 export const metadata: Metadata = {
   metadataBase: new URL("https://undguntsagaan.mn"),
   title: {
-    default: "Undgun Tsagaan — Mongolian Horse Heritage Magazine",
+    default: "Uhaantai Mori— Mongolian Horse Heritage Magazine",
     template: "%s · Undgun Tsagaan",
   },
   description:
-    "Undgun Tsagaan (Өндгөн цагаан) — Mongolia's magazine of racing bloodlines, master horse trainers and living heritage treasures.",
+    "Uhaantai Mori(Ухаантай Морь) — Mongolia's magazine of racing bloodlines, master horse trainers and living heritage treasures.",
   keywords: [
     "Mongolian horses",
     "racehorses",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     "Mongolian heritage",
   ],
   openGraph: {
-    title: "Undgun Tsagaan — Mongolian Horse Heritage Magazine",
+    title: "Uhaantai Mori— Mongolian Horse Heritage Magazine",
     description:
       "Racing bloodlines, master trainers and living heritage of the Mongolian steppe.",
     type: "website",

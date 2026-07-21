@@ -23,6 +23,9 @@
     "react": "^19.1.1",
     "react-dom": "^19.1.1"
   },
+  "overrides": {
+    "jose": "4.15.9"
+  },
   "devDependencies": {
     "@types/node": "^22.10.7",
     "@types/react": "^19.0.7",

@@ -48,7 +48,7 @@ export default function AdminNav({ email }: { email: string }) {
       >
         <p className="eyebrow text-[10px] text-red">Админ</p>
         <p className="mt-1 font-serif text-2xl font-semibold text-charcoal transition-colors group-hover:text-red">
-          Өндгөн цагаан
+          Ухаантай Морь
           <span className="ml-1 align-super text-xs text-ink/40 transition-colors group-hover:text-red">↗</span>
         </p>
       </a>

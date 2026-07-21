@@ -17,7 +17,7 @@ export default function Logo({ className = "", showText = true }: LogoProps) {
     <span className={`inline-flex items-center gap-3 ${className}`}>
       <Image
         src="/images/logo-emblem.png"
-        alt="Undgun Tsagaan emblem"
+        alt="Uhaantai Moriemblem"
         width={44}
         height={44}
         priority

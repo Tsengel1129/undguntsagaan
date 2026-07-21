@@ -58,7 +58,7 @@ export default function AdminLoginPage() {
         onSubmit={signIn}
         className="w-full max-w-sm rounded-sm border border-charcoal/10 bg-white p-10"
       >
-        <p className="eyebrow text-center text-xs text-red">Өндгөн цагаан</p>
+        <p className="eyebrow text-center text-xs text-red">Ухаантай Морь</p>
         <h1 className="mt-3 text-center font-serif text-3xl font-semibold text-charcoal">
           Админ нэвтрэлт
         </h1>

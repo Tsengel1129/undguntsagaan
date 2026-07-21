@@ -9,7 +9,7 @@ export const revalidate = 60;
 export const metadata: Metadata = {
   title: "Magazine",
   description:
-    "Articles from Undgun Tsagaan — stories on bloodlines, trainers, collectors and Mongolian horse heritage.",
+    "Articles from Uhaantai Mori— stories on bloodlines, trainers, collectors and Mongolian horse heritage.",
 };
 
 const PER_PAGE = 6;

@@ -102,7 +102,7 @@ export const TEXT_GROUPS: TextGroup[] = [
 
 export const DEFAULT_TEXTS: Record<string, string> = {
   homeHeroImage: "/images/hero.jpg",
-  homeHeroEyebrow: "Өндгөн цагаан · Mongolian Horse Heritage",
+  homeHeroEyebrow: "Ухаантай Морь · Mongolian Horse Heritage",
   homeHeroTitle: "Undgun Tsagaan",
   homeCtaPrimary: "Read the Magazine",
   homeCtaSecondary: "Meet the Horses",
@@ -146,15 +146,15 @@ export const DEFAULT_TEXTS: Record<string, string> = {
   abEyebrow: "About",
   abTitle: "Mongolia's magazine of horse and heritage",
   abIntro:
-    "Undgun Tsagaan (Өндгөн цагаан) celebrates the racing horse, the master trainer and the living heritage of the Mongolian steppe.",
+    "Uhaantai Mori(Ухаантай Морь) celebrates the racing horse, the master trainer and the living heritage of the Mongolian steppe.",
   abImage:
     "https://images.unsplash.com/photo-1695555875394-4e8aa542ccdc?auto=format&fit=crop&w=2000&q=80",
   abBody1:
-    "For generations, the horse has stood at the centre of Mongolian life — a source of pride, livelihood and identity. Undgun Tsagaan exists to document that world with the care it deserves: the bloodlines that produce champions, the trainers who shape them, and the heritage objects that surround the culture of the horse.",
+    "For generations, the horse has stood at the centre of Mongolian life — a source of pride, livelihood and identity. Uhaantai Moriexists to document that world with the care it deserves: the bloodlines that produce champions, the trainers who shape them, and the heritage objects that surround the culture of the horse.",
   abBody2:
     "In each issue we profile racing horses and the udam behind their speed, sit down with the уяач who train them, and look closely at the craft of хэт хутга knife sets, carved хөөрөг snuff bottles and heirloom silverwork. Our aim is to record these traditions honestly and to share them with readers in Mongolia and far beyond.",
   abBody3:
-    "We believe heritage is not something kept behind glass. It is ridden across the steppe, carried on the belt and passed between generations. Undgun Tsagaan is our contribution to keeping that living tradition visible.",
+    "We believe heritage is not something kept behind glass. It is ridden across the steppe, carried on the belt and passed between generations. Uhaantai Moriis our contribution to keeping that living tradition visible.",
   abMissionText:
     "To celebrate and preserve the heritage of the Mongolian horse — its bloodlines, its trainers and its treasures — for a global audience.",
   ctEyebrow: "Contact",

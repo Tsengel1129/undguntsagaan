@@ -10,7 +10,7 @@ export const revalidate = 60;
 export const metadata: Metadata = {
   title: "About",
   description:
-    "About Undgun Tsagaan — Mongolia's magazine of racing bloodlines, master trainers and heritage treasures.",
+    "About Uhaantai Mori— Mongolia's magazine of racing bloodlines, master trainers and heritage treasures.",
 };
 
 export default async function AboutPage() {

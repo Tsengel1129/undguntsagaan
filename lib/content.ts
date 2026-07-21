@@ -23,7 +23,7 @@ export const U = (id: string, w = 1600) =>
 
 export const SITE = {
   name: "Undgun Tsagaan",
-  nameMn: "Өндгөн цагаан",
+  nameMn: "Ухаантай Морь",
   tagline:
     "Mongolia's magazine of racing bloodlines, master trainers and living heritage.",
   email: "info@undguntsagaan.mn",
@@ -634,7 +634,7 @@ export const ARTICLES: Article[] = [
     title: "The Bloodlines Behind This Year's Naadam Champions",
     category: "Bloodlines",
     date: "June 2026",
-    author: "By the Undgun Tsagaan editorial team",
+    author: "By the Uhaantai Morieditorial team",
     readTime: "8 min read",
     excerpt:
       "We trace the udam of the fastest horses on the steppe and the families who kept those lines alive.",
@@ -659,7 +659,7 @@ export const ARTICLES: Article[] = [
     title: "A Day in the Life of a Master Trainer",
     category: "Trainers",
     date: "May 2026",
-    author: "By the Undgun Tsagaan editorial team",
+    author: "By the Uhaantai Morieditorial team",
     readTime: "7 min read",
     excerpt:
       "From before dawn to last light, inside the patient daily craft of conditioning a champion.",
@@ -684,7 +684,7 @@ export const ARTICLES: Article[] = [
     title: "Reading a Snuff Bottle: A Collector's Guide",
     category: "Heritage",
     date: "May 2026",
-    author: "By the Undgun Tsagaan editorial team",
+    author: "By the Uhaantai Morieditorial team",
     readTime: "6 min read",
     excerpt:
       "What stone, stopper and silverwork reveal about the age and story of a хөөрөг.",
@@ -709,7 +709,7 @@ export const ARTICLES: Article[] = [
     title: "The Quiet Art of the Belt Knife",
     category: "Craft",
     date: "April 2026",
-    author: "By the Undgun Tsagaan editorial team",
+    author: "By the Uhaantai Morieditorial team",
     readTime: "6 min read",
     excerpt:
       "How хэт хутга makers balance everyday use with centuries of ornamental tradition.",
@@ -734,7 +734,7 @@ export const ARTICLES: Article[] = [
     title: "Training the Two-Year-Old: First Season on the Steppe",
     category: "Trainers",
     date: "April 2026",
-    author: "By the Undgun Tsagaan editorial team",
+    author: "By the Uhaantai Morieditorial team",
     readTime: "7 min read",
     excerpt:
       "The careful first year that decides whether a young horse becomes a racer.",
@@ -759,7 +759,7 @@ export const ARTICLES: Article[] = [
     title: "Silver, Coral and Status on the Open Plain",
     category: "Heritage",
     date: "March 2026",
-    author: "By the Undgun Tsagaan editorial team",
+    author: "By the Uhaantai Morieditorial team",
     readTime: "6 min read",
     excerpt:
       "A look at the heritage silverwork that has signalled standing for generations.",

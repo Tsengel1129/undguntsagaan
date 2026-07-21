@@ -39,7 +39,7 @@ export default function Header() {
       }`}
     >
       <div className="mx-auto flex max-w-page items-center justify-between px-5 py-4 md:px-8">
-        <Link href="/" aria-label="Undgun Tsagaan — home" className="text-charcoal">
+        <Link href="/" aria-label="Uhaantai Mori— home" className="text-charcoal">
           <Logo />
         </Link>
 
