@@ -147,8 +147,8 @@ export async function relatedArticles(slug: string, count = 3) {
 /* ── Site settings ── */
 
 const DEFAULT_GENERAL: SiteGeneralSettings = {
-  name: "Undgun Tsagaan",
-  nameMn: "Өндгөн цагаан",
+  name: "Uhaantai Mori",
+  nameMn: "Ухаантай Морь",
   tagline:
     "Mongolia's magazine of racing bloodlines, master trainers and living heritage.",
   email: "info@undguntsagaan.mn",
