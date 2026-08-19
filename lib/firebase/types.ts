@@ -136,6 +136,9 @@ export type ArticleDoc = PublishMeta & {
   slug: string;
   title: string;
   category: string;
+  /** Free-column section (Чөлөөт булан). Empty / "Сэтгүүл" = main magazine.
+     One of the COLUMN_SECTIONS values routes it into a column page. */
+  section?: string;
   date: string; // display date, e.g. "June 2026"
   author: string;
   readTime: string;
@@ -144,6 +147,58 @@ export type ArticleDoc = PublishMeta & {
   body: TiptapDoc;
   pullQuote: string;
   inlineImages: string[]; // woven into the article layout
+};
+
+export type IssueDoc = PublishMeta & {
+  slug: string;
+  title: string;
+  issueNumber: string;
+  date: string;
+  year: string;
+  /** Archive unlock price in ₮; 0 / empty = free to read. */
+  price: number;
+  summary: string;
+  pdfUrl: string; // archive read/download source
+  images: string[]; // ordered page scans, [0] = cover — read by the flipbook
+};
+
+/* ── Shop (Дэлгүүр) ── */
+
+export type ProductDoc = PublishMeta & {
+  slug: string;
+  name: string;
+  category: string; // "Эм тариа" | "Бусад бүтээгдэхүүн"
+  brand: string;
+  price: number;
+  unit: string;
+  summary: string;
+  body: TiptapDoc;
+  images: string[]; // [0] = hero
+};
+
+export type PharmacyDoc = PublishMeta & {
+  slug: string;
+  name: string;
+  aimag: string;
+  sum: string;
+  address: string;
+  phone: string;
+  hours: string;
+  lat: string; // kept as string so "unset" stays empty (not 0,0)
+  lng: string;
+  images: string[];
+};
+
+/** One product-at-one-pharmacy availability row (denormalized for search). */
+export type StockDoc = PublishMeta & {
+  slug: string;
+  product: string;
+  pharmacy: string;
+  aimag: string;
+  sum: string;
+  phone: string;
+  quantity: number;
+  unit: string;
 };
 
 /* ── Site settings documents ── */
@@ -170,6 +225,10 @@ export const COLLECTIONS = {
   trainers: "trainers",
   treasures: "treasures",
   articles: "articles",
+  issues: "issues",
+  products: "products",
+  pharmacies: "pharmacies",
+  stock: "stock",
 } as const;
 
 export type CollectionName = (typeof COLLECTIONS)[keyof typeof COLLECTIONS];

@@ -12,6 +12,11 @@ const nextConfig = {
   // 500 that broke admin login on Vercel).
   serverExternalPackages: ["firebase-admin"],
   images: {
+    // Rural-bandwidth: AVIF first (~50% smaller than WebP at equal quality),
+    // a modest default quality, and a long cache so images optimize once.
+    formats: ["image/avif", "image/webp"],
+    qualities: [68, 75],
+    minimumCacheTTL: 2_592_000, // 30 days
     remotePatterns: [
       // Unsplash photos used by the seeded content.
       {

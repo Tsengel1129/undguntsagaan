@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { getClientAuth } from "@/lib/firebase/client";
+import PasswordInput from "@/components/admin/PasswordInput";
 
 const AUTH_ERRORS: Record<string, string> = {
   "auth/invalid-credential": "И-мэйл эсвэл нууц үг буруу байна",
@@ -87,9 +88,8 @@ export default function AdminLoginPage() {
             >
               Нууц үг
             </label>
-            <input
+            <PasswordInput
               id="admin-password"
-              type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               autoComplete="current-password"

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import PageHeader from "@/components/PageHeader";
 import Pagination from "@/components/Pagination";
 import { FeatureCard, StandardCard, WideCard } from "@/components/editorial";
-import { getSiteTexts, listArticles } from "@/lib/firebase/queries";
+import { getSiteTexts, listMagazineArticles } from "@/lib/firebase/queries";
 
 export const revalidate = 60;
 
@@ -20,7 +20,10 @@ export default async function MagazinePage({
   searchParams: Promise<{ page?: string }>;
 }) {
   const { page } = await searchParams;
-  const [articles, texts] = await Promise.all([listArticles(), getSiteTexts()]);
+  const [articles, texts] = await Promise.all([
+    listMagazineArticles(),
+    getSiteTexts(),
+  ]);
   const totalPages = Math.max(1, Math.ceil(articles.length / PER_PAGE));
   const current = Math.min(Math.max(1, Number(page) || 1), totalPages);
   const pageItems = articles.slice((current - 1) * PER_PAGE, current * PER_PAGE);

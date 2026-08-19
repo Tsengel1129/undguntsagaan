@@ -22,7 +22,7 @@ export const U = (id: string, w = 1600) =>
   `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&q=80`;
 
 export const SITE = {
-  name: "Undgun Tsagaan",
+  name: "Uhaantai Mori",
   nameMn: "Ухаантай Морь",
   tagline:
     "Mongolia's magazine of racing bloodlines, master trainers and living heritage.",

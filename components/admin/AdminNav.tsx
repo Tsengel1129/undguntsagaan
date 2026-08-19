@@ -9,10 +9,14 @@ import { confirmLeaveIfDirty } from "@/lib/admin/dirty";
 const NAV = [
   { href: "/admin/homepage", label: "Нүүр хуудас" },
   { href: "/admin/texts", label: "Сайтын текст" },
-  { href: "/admin/racehorses", label: "Хурдан морьд" },
+  { href: "/admin/racehorses", label: "Адуу" },
   { href: "/admin/trainers", label: "Уяачид" },
-  { href: "/admin/treasures", label: "Өв соёлын эрдэнэс" },
+  { href: "/admin/treasures", label: "Өв соёл" },
   { href: "/admin/articles", label: "Сэтгүүл" },
+  { href: "/admin/issues", label: "Сэтгүүлийн дугаарууд" },
+  { href: "/admin/products", label: "Дэлгүүр — бүтээгдэхүүн" },
+  { href: "/admin/pharmacies", label: "Малын эмийн сангууд" },
+  { href: "/admin/stock", label: "Эмийн үлдэгдэл" },
   { href: "/admin/settings", label: "Тохиргоо" },
 ];
 

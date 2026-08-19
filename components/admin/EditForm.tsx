@@ -125,10 +125,10 @@ export default function EditForm({
 
   const [values, setValues] = useState<Values>(() => {
     if (initial) return { ...initial };
-    const v: Values = { body: EMPTY_DOC };
+    const v: Values = config.noBody ? {} : { body: EMPTY_DOC };
     for (const f of config.fields) v[f.key] = f.type === "number" ? 0 : "";
     if (config.imagesModel === "gallery") v.images = [];
-    else {
+    else if (config.imagesModel === "article") {
       v.lead = "";
       v.inlineImages = [];
     }
@@ -236,7 +236,9 @@ export default function EditForm({
   const previewImage =
     config.imagesModel === "gallery"
       ? ((values.images as string[] | undefined) ?? [])[0]
-      : (values.lead as string | undefined);
+      : config.imagesModel === "article"
+        ? (values.lead as string | undefined)
+        : undefined;
 
   const previewProps = useMemo(
     () => ({
@@ -297,6 +299,7 @@ export default function EditForm({
         </Section>
 
         {/* ── Зураг ── */}
+        {config.imagesModel !== "none" && (
         <Section title="Зураг">
           {config.imagesModel === "gallery" ? (
             <ImageRows
@@ -327,8 +330,10 @@ export default function EditForm({
             </>
           )}
         </Section>
+        )}
 
         {/* ── Дэлгэрэнгүй ── */}
+        {(detailFields.length > 0 || !config.noBody) && (
         <Section title="Дэлгэрэнгүй">
           {detailFields.map((f) => (
             <Field
@@ -338,6 +343,7 @@ export default function EditForm({
               onChange={(v) => update(f.key, v)}
             />
           ))}
+          {!config.noBody && (
           <div>
             <label className="mb-1.5 block text-sm font-medium text-charcoal">
               Нийтлэлийн эх (body)
@@ -349,7 +355,9 @@ export default function EditForm({
               slug={effectiveSlug}
             />
           </div>
+          )}
         </Section>
+        )}
 
         {/* ── Нийтлэлт ── */}
         <Section title="Нийтлэлт">

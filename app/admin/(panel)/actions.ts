@@ -24,6 +24,10 @@ const PUBLIC_BASE: Record<CollectionKey, string> = {
   trainers: "/trainers",
   treasures: "/heritage",
   articles: "/magazine",
+  issues: "/magazine/issue",
+  products: "/shop",
+  pharmacies: "/shop/pharmacies",
+  stock: "/shop",
 };
 
 function revalidateFor(collection: CollectionKey, slug?: string) {
@@ -59,7 +63,7 @@ function sanitizeValues(
         (u) => typeof u === "string" && u.trim() !== ""
       );
     }
-  } else {
+  } else if (config.imagesModel === "article") {
     if ("lead" in values) out.lead = values.lead ?? "";
     if ("inlineImages" in values) {
       out.inlineImages = (values.inlineImages as unknown[]).filter(
@@ -67,6 +71,7 @@ function sanitizeValues(
       );
     }
   }
+  // imagesModel "none": data-only record — no image fields written.
   return out;
 }
 

@@ -41,6 +41,7 @@ export default function ContentImage({
   fit = "auto",
   tone = "light",
   imgClassName = "",
+  quality = 68,
 }: {
   src?: string | null;
   alt: string;
@@ -49,6 +50,7 @@ export default function ContentImage({
   fit?: "auto" | "contain" | "cover";
   tone?: "light" | "dark";
   imgClassName?: string;
+  quality?: number;
 }) {
   const [failed, setFailed] = useState(false);
   const fillBg = tone === "dark" ? "bg-charcoal" : "bg-ivory";
@@ -77,6 +79,7 @@ export default function ContentImage({
         fill
         sizes={sizes}
         priority={priority}
+        quality={quality}
         className={`${
           resolved === "contain" ? "object-contain" : "object-cover"
         } object-center ${imgClassName}`}

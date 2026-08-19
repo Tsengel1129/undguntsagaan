@@ -18,15 +18,15 @@ export default async function Footer() {
         </div>
 
         <div>
-          <h3 className="eyebrow text-xs text-gold-soft">Explore</h3>
+          <h3 className="eyebrow text-xs text-gold-soft">Цэс</h3>
           <ul className="mt-5 grid grid-cols-2 gap-y-3">
-            {NAV.map((item) => (
+            {NAV.filter((item) => item.href).map((item) => (
               <li key={item.href}>
                 <Link
-                  href={item.href}
+                  href={item.href!}
                   className="text-sm text-cream/80 transition-colors hover:text-red-soft"
                 >
-                  {item.label}
+                  {item.mn}
                 </Link>
               </li>
             ))}
@@ -34,7 +34,7 @@ export default async function Footer() {
         </div>
 
         <div>
-          <h3 className="eyebrow text-xs text-gold-soft">Contact</h3>
+          <h3 className="eyebrow text-xs text-gold-soft">Холбоо барих</h3>
           <address className="mt-5 space-y-3 text-sm not-italic text-cream/80">
             <p>
               <a
@@ -60,7 +60,7 @@ export default async function Footer() {
       <div className="border-t border-cream/10">
         <div className="mx-auto flex max-w-page flex-col items-center justify-between gap-2 px-5 py-6 text-xs text-cream/50 md:flex-row md:px-8">
           <p>
-            © {2026} {site.name} · {site.nameMn}. All rights reserved.
+            © {2026} {site.name} - {site.nameMn}. All rights reserved.
           </p>
           <p>Mongolia's magazine of horse heritage.</p>
         </div>

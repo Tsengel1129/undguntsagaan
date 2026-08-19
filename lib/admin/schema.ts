@@ -2,7 +2,17 @@
    One config per collection drives the list page, the edit form, the
    publish validation labels and the live preview card. */
 
-export type CollectionKey = "racehorses" | "trainers" | "treasures" | "articles";
+import { SECTION_OPTIONS } from "@/lib/columns";
+
+export type CollectionKey =
+  | "racehorses"
+  | "trainers"
+  | "treasures"
+  | "articles"
+  | "issues"
+  | "products"
+  | "pharmacies"
+  | "stock";
 
 export type FieldDef = {
   key: string;
@@ -23,8 +33,11 @@ export type CollectionConfig = {
   nameKey: string;
   /** Field shown as the card summary. */
   summaryKey: string;
-  /** "gallery": images[] (hero first) · "article": lead + inlineImages[]. */
-  imagesModel: "gallery" | "article";
+  /** "gallery": images[] (hero first) · "article": lead + inlineImages[] ·
+     "none": data-only record (no images, no rich body — e.g. stock rows). */
+  imagesModel: "gallery" | "article" | "none";
+  /** Data-only collections ("none") skip the rich-text body editor. */
+  noBody?: boolean;
   fields: FieldDef[];
   /** Preview card mappers (public StandardCard props). */
   preview: {
@@ -39,7 +52,7 @@ const s = (v: unknown) => (typeof v === "string" ? v : String(v ?? ""));
 export const COLLECTION_CONFIGS: Record<CollectionKey, CollectionConfig> = {
   racehorses: {
     key: "racehorses",
-    title: "Хурдан морьд",
+    title: "Адуу",
     nameKey: "name",
     summaryKey: "summary",
     imagesModel: "gallery",
@@ -79,7 +92,7 @@ export const COLLECTION_CONFIGS: Record<CollectionKey, CollectionConfig> = {
   },
   treasures: {
     key: "treasures",
-    title: "Өв соёлын эрдэнэс",
+    title: "Өв соёл",
     nameKey: "name",
     summaryKey: "summary",
     imagesModel: "gallery",
@@ -104,6 +117,7 @@ export const COLLECTION_CONFIGS: Record<CollectionKey, CollectionConfig> = {
     fields: [
       { key: "title", label: "Гарчиг", type: "text", guideline: 70, section: "basic", requiredForPublish: true },
       { key: "category", label: "Ангилал", type: "text", section: "basic", requiredForPublish: true },
+      { key: "section", label: "Булан", type: "select", options: SECTION_OPTIONS, section: "basic" },
       { key: "date", label: "Огноо (жишээ: June 2026)", type: "text", section: "basic" },
       { key: "author", label: "Зохиогч", type: "text", section: "basic" },
       { key: "readTime", label: "Унших хугацаа", type: "text", section: "basic" },
@@ -113,6 +127,89 @@ export const COLLECTION_CONFIGS: Record<CollectionKey, CollectionConfig> = {
     preview: {
       eyebrow: (v) => s(v.category),
       meta: (v) => [s(v.date), s(v.readTime)].filter(Boolean).join(" · "),
+    },
+  },
+  issues: {
+    key: "issues",
+    title: "Сэтгүүлийн дугаарууд",
+    nameKey: "title",
+    summaryKey: "summary",
+    // Gallery model: images[] holds the ordered page scans, [0] = cover.
+    // The public flipbook reads these in order.
+    imagesModel: "gallery",
+    fields: [
+      { key: "title", label: "Гарчиг (жишээ: 2026 №1)", type: "text", guideline: 70, section: "basic", requiredForPublish: true },
+      { key: "issueNumber", label: "Дугаар", type: "text", section: "basic" },
+      { key: "date", label: "Огноо (жишээ: 2026 оны 6-р сар)", type: "text", section: "basic" },
+      { key: "year", label: "Он (архивт бүлэглэх)", type: "text", section: "basic" },
+      { key: "price", label: "Архивын үнэ (₮, 0 = үнэгүй)", type: "number", section: "basic" },
+      { key: "summary", label: "Товч тайлбар", type: "textarea", guideline: 160, section: "basic" },
+      { key: "pdfUrl", label: "PDF холбоос (унших/татах)", type: "text", section: "details" },
+    ],
+    preview: {
+      eyebrow: (v) => s(v.issueNumber),
+      meta: (v) => s(v.date),
+    },
+  },
+  products: {
+    key: "products",
+    title: "Дэлгүүр — бүтээгдэхүүн",
+    nameKey: "name",
+    summaryKey: "summary",
+    imagesModel: "gallery",
+    fields: [
+      { key: "name", label: "Нэр", type: "text", guideline: 70, section: "basic", requiredForPublish: true },
+      { key: "category", label: "Ангилал", type: "select", options: ["Эм тариа", "Бусад бүтээгдэхүүн"], section: "basic", requiredForPublish: true },
+      { key: "brand", label: "Бренд / үйлдвэрлэгч", type: "text", section: "basic" },
+      { key: "price", label: "Үнэ (₮)", type: "number", section: "basic" },
+      { key: "unit", label: "Хэмжих нэгж", type: "text", section: "basic" },
+      { key: "summary", label: "Товч тайлбар", type: "textarea", guideline: 160, section: "basic", requiredForPublish: true },
+    ],
+    preview: {
+      eyebrow: (v) => s(v.category),
+      meta: (v) => (v.price ? `${Number(v.price).toLocaleString()}₮` : s(v.brand)),
+    },
+  },
+  pharmacies: {
+    key: "pharmacies",
+    title: "Малын эмийн сангууд",
+    nameKey: "name",
+    summaryKey: "address",
+    imagesModel: "gallery",
+    fields: [
+      { key: "name", label: "Нэр", type: "text", guideline: 70, section: "basic", requiredForPublish: true },
+      { key: "aimag", label: "Аймаг / хот", type: "text", section: "basic", requiredForPublish: true },
+      { key: "sum", label: "Сум / дүүрэг", type: "text", section: "basic" },
+      { key: "address", label: "Дэлгэрэнгүй хаяг", type: "textarea", guideline: 160, section: "basic" },
+      { key: "phone", label: "Утас", type: "text", section: "basic" },
+      { key: "hours", label: "Цагийн хуваарь", type: "text", section: "basic" },
+      { key: "lat", label: "Өргөрөг (lat, жишээ: 47.9187)", type: "text", section: "details" },
+      { key: "lng", label: "Уртраг (lng, жишээ: 106.9176)", type: "text", section: "details" },
+    ],
+    preview: {
+      eyebrow: (v) => [s(v.aimag), s(v.sum)].filter(Boolean).join(" · "),
+      meta: (v) => s(v.phone),
+    },
+  },
+  stock: {
+    key: "stock",
+    title: "Эмийн үлдэгдэл",
+    nameKey: "product",
+    summaryKey: "pharmacy",
+    imagesModel: "none",
+    noBody: true,
+    fields: [
+      { key: "product", label: "Бүтээгдэхүүний нэр", type: "text", guideline: 70, section: "basic", requiredForPublish: true },
+      { key: "pharmacy", label: "Эмийн сан", type: "text", section: "basic", requiredForPublish: true },
+      { key: "aimag", label: "Аймаг / хот", type: "text", section: "basic" },
+      { key: "sum", label: "Сум / дүүрэг", type: "text", section: "basic" },
+      { key: "phone", label: "Утас", type: "text", section: "basic" },
+      { key: "quantity", label: "Үлдэгдэл (тоо)", type: "number", section: "basic" },
+      { key: "unit", label: "Нэгж (ширхэг / уут)", type: "text", section: "basic" },
+    ],
+    preview: {
+      eyebrow: (v) => [s(v.aimag), s(v.sum)].filter(Boolean).join(" · "),
+      meta: (v) => (v.quantity != null && v.quantity !== "" ? `${v.quantity} ${s(v.unit)}`.trim() : ""),
     },
   },
 };

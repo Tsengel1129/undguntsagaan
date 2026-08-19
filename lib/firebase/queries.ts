@@ -13,13 +13,18 @@ import { cache } from "react";
 import type { Timestamp } from "firebase-admin/firestore";
 import { getAdminDb } from "./admin";
 import { DEFAULT_TEXTS } from "@/lib/siteTexts";
+import { isColumnValue } from "@/lib/columns";
 import {
   COLLECTIONS,
   type ArticleDoc,
   type CollectionName,
   type HomepageSettings,
+  type IssueDoc,
+  type PharmacyDoc,
+  type ProductDoc,
   type RacehorseDoc,
   type SiteGeneralSettings,
+  type StockDoc,
   type TrainerDoc,
   type TreasureDoc,
 } from "./types";
@@ -34,6 +39,10 @@ export type Racehorse = Plainify<RacehorseDoc>;
 export type Trainer = Plainify<TrainerDoc>;
 export type Treasure = Plainify<TreasureDoc>;
 export type Article = Plainify<ArticleDoc>;
+export type Issue = Plainify<IssueDoc>;
+export type Product = Plainify<ProductDoc>;
+export type Pharmacy = Plainify<PharmacyDoc>;
+export type Stock = Plainify<StockDoc>;
 
 function toPlain<T extends { [k: string]: unknown }>(data: T): Plainify<T> {
   const out: Record<string, unknown> = { ...data };
@@ -143,6 +152,59 @@ export async function relatedArticles(slug: string, count = 3) {
   const all = await listArticles();
   return all.filter((a) => a.slug !== slug).slice(0, count);
 }
+
+/** Main-magazine articles only — excludes anything routed to a Free column. */
+export const listMagazineArticles = async (): Promise<Article[]> =>
+  (await listArticles()).filter((a) => !isColumnValue(a.section));
+
+/* ── Magazine issues (flipbook) ── */
+
+export const listIssues = () =>
+  listPublished(COLLECTIONS.issues) as Promise<Issue[]>;
+
+export const getIssue = (slug: string) =>
+  getPublishedBySlug(COLLECTIONS.issues, slug) as Promise<Issue | null>;
+
+/** The current issue for the flipbook: pinned first, else newest published. */
+export const getCurrentIssue = async (): Promise<Issue | null> =>
+  (await listIssues())[0] ?? null;
+
+/* ── Shop (Дэлгүүр) ── */
+
+export const listProducts = () =>
+  listPublished(COLLECTIONS.products) as Promise<Product[]>;
+export const getProduct = (slug: string) =>
+  getPublishedBySlug(COLLECTIONS.products, slug) as Promise<Product | null>;
+
+/** Products filtered by category ("Эм тариа" | "Бусад бүтээгдэхүүн"). */
+export const listProductsByCategory = async (
+  category: string
+): Promise<Product[]> =>
+  (await listProducts()).filter((p) => p.category === category);
+
+export const listPharmacies = () =>
+  listPublished(COLLECTIONS.pharmacies) as Promise<Pharmacy[]>;
+export const getPharmacy = (slug: string) =>
+  getPublishedBySlug(COLLECTIONS.pharmacies, slug) as Promise<Pharmacy | null>;
+
+export const listStock = () =>
+  listPublished(COLLECTIONS.stock) as Promise<Stock[]>;
+
+/** emonos-style availability search: match rows whose product name contains
+   the query (case-insensitive), newest first (ordering already applied). */
+export const searchStock = async (query: string): Promise<Stock[]> => {
+  const q = query.trim().toLowerCase();
+  if (!q) return [];
+  return (await listStock()).filter((row) =>
+    (row.product ?? "").toLowerCase().includes(q)
+  );
+};
+
+/** Articles belonging to one Free column, matched by its stored section value. */
+export const listColumnArticles = async (
+  sectionValue: string
+): Promise<Article[]> =>
+  (await listArticles()).filter((a) => a.section === sectionValue);
 
 /* ── Site settings ── */
 

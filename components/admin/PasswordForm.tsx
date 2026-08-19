@@ -8,6 +8,7 @@ import {
 } from "firebase/auth";
 import { getClientAuth } from "@/lib/firebase/client";
 import { toast } from "@/lib/admin/toast";
+import PasswordInput from "./PasswordInput";
 
 const ERRORS: Record<string, string> = {
   "auth/invalid-credential": "Одоогийн нууц үг буруу байна",
@@ -71,9 +72,8 @@ export default function PasswordForm() {
         <label htmlFor="pw-current" className="mb-1.5 block text-sm font-medium text-charcoal">
           Одоогийн нууц үг
         </label>
-        <input
+        <PasswordInput
           id="pw-current"
-          type="password"
           value={current}
           onChange={(e) => setCurrent(e.target.value)}
           autoComplete="current-password"
@@ -85,9 +85,8 @@ export default function PasswordForm() {
         <label htmlFor="pw-next" className="mb-1.5 block text-sm font-medium text-charcoal">
           Шинэ нууц үг
         </label>
-        <input
+        <PasswordInput
           id="pw-next"
-          type="password"
           value={next}
           onChange={(e) => setNext(e.target.value)}
           autoComplete="new-password"
@@ -99,9 +98,8 @@ export default function PasswordForm() {
         <label htmlFor="pw-confirm" className="mb-1.5 block text-sm font-medium text-charcoal">
           Шинэ нууц үг (давтах)
         </label>
-        <input
+        <PasswordInput
           id="pw-confirm"
-          type="password"
           value={confirm}
           onChange={(e) => setConfirm(e.target.value)}
           autoComplete="new-password"
