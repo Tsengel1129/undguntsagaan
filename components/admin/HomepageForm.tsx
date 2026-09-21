@@ -52,7 +52,7 @@ export default function HomepageForm({
     <div className="space-y-6">
       <section className="rounded-sm border border-charcoal/10 bg-white p-6">
         <h2 className="mb-4 font-serif text-xl font-semibold text-charcoal">
-          Дугаарын морь (Horse of the issue)
+          Дугаарын морь
         </h2>
         <select value={horse} onChange={(e) => setHorse(e.target.value)} className={select}>
           {horses.map((h) => (
@@ -68,7 +68,7 @@ export default function HomepageForm({
 
       <section className="rounded-sm border border-charcoal/10 bg-white p-6">
         <h2 className="mb-4 font-serif text-xl font-semibold text-charcoal">
-          Сүүлийн нийтлэлүүд (Latest stories)
+          Сүүлийн нийтлэлүүд
         </h2>
         <div className="space-y-2">
           <label className="flex items-center gap-3 text-sm text-charcoal">

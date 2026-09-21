@@ -1,13 +1,15 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { NAV, type NavItem } from "@/lib/nav";
 import { useLang } from "@/lib/i18n/LanguageProvider";
 import LanguageToggle from "./LanguageToggle";
 import Logo from "./Logo";
+import NavIcon from "./NavIcon";
 
 function Chevron({ className = "" }: { className?: string }) {
   return (
@@ -33,11 +35,19 @@ export default function Header() {
   const [expanded, setExpanded] = useState<Record<string, boolean>>({});
 
   const [scrolled, setScrolled] = useState(false);
+  // After a click inside a mega menu the route changes but the pointer is
+  // still hovering the panel — suppress the CSS hover until the pointer leaves.
+  const [suppressed, setSuppressed] = useState(false);
 
-  // Close the mobile menu whenever the route changes
+  // Close the mobile menu whenever the route changes (skip the initial mount,
+  // otherwise the first hover on a fresh page would be suppressed).
+  const prevPath = useRef(pathname);
   useEffect(() => {
+    if (prevPath.current === pathname) return;
+    prevPath.current = pathname;
     setOpen(false);
     setExpanded({});
+    setSuppressed(true);
   }, [pathname]);
 
   useEffect(() => {
@@ -56,14 +66,17 @@ export default function Header() {
   const toggleExpand = (key: string) =>
     setExpanded((e) => ({ ...e, [key]: !e[key] }));
 
-  /* ── Desktop: a top-level item with a dropdown panel ── */
+  /* ── Desktop: a top-level item; items with children open a full-width
+        mega menu (featured image card on the left, icon list on the right).
+        The panel is absolutely positioned against the sticky header, so it
+        spans the whole viewport width like Oura's "Your Health" menu. ── */
   const DesktopItem = ({ item }: { item: NavItem }) => {
     if (!item.children) {
       return (
         <Link
           href={item.href ?? "#"}
           data-active={isActive(item.href)}
-          className={`nav-underline text-sm font-medium tracking-wide transition-colors ${
+          className={`nav-underline whitespace-nowrap text-sm font-medium tracking-wide transition-colors ${
             isActive(item.href) ? "text-red" : "text-ink hover:text-red"
           }`}
         >
@@ -71,76 +84,103 @@ export default function Header() {
         </Link>
       );
     }
+    // Flatten one level of grouping headers so the grid stays a plain list.
+    const entries = item.children.flatMap((c) => (c.children ? c.children : [c]));
+    const featured = item.featured;
+    const openClasses = suppressed
+      ? ""
+      : "group-hover:visible group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100";
+
     return (
-      <div className="group relative">
+      // Negative/positive vertical padding extends the hover area down to the
+      // header's bottom edge, so the pointer never "falls out" on the way to the panel.
+      <div className="group -my-4 py-4" onMouseLeave={() => setSuppressed(false)}>
         <Link
           href={item.href ?? "#"}
           data-active={isActive(item.href)}
-          className={`inline-flex items-center gap-1 text-sm font-medium tracking-wide transition-colors ${
+          className={`nav-underline inline-flex items-center gap-1 whitespace-nowrap text-sm font-medium tracking-wide transition-colors ${
             isActive(item.href) ? "text-red" : "text-ink hover:text-red"
           }`}
         >
           {label(item)}
           <Chevron className="transition-transform duration-200 group-hover:rotate-180" />
         </Link>
-        {/* Dropdown */}
-        <div className="invisible absolute left-1/2 top-full z-50 -translate-x-1/2 pt-3 opacity-0 transition-all duration-200 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
-          <div className="w-[320px] rounded-lg border border-charcoal/10 bg-cream p-2 shadow-[0_12px_40px_-16px_rgba(26,23,20,0.4)]">
-            {item.children.map((child) =>
-              child.children ? (
-                <div key={child.mn} className="mt-1 first:mt-0">
-                  <Link
-                    href={child.href ?? "#"}
-                    className={`block rounded-md px-3 pb-0.5 pt-2 transition-colors ${
-                      isActive(child.href) ? "text-red" : "text-gold hover:text-red"
-                    }`}
-                  >
-                    <span className="text-xs font-semibold uppercase tracking-[0.14em]">
-                      {label(child)}
-                    </span>
-                    {desc(child) && (
-                      <span className="mt-0.5 block text-xs font-normal normal-case tracking-normal text-ink/50">
-                        {desc(child)}
-                      </span>
-                    )}
-                  </Link>
-                  <ul>
-                    {child.children.map((gc) => (
-                      <li key={gc.href}>
-                        <Link
-                          href={gc.href ?? "#"}
-                          className={`block rounded-md px-3 py-1.5 transition-colors ${
-                            isActive(gc.href)
-                              ? "text-red"
-                              : "text-ink/85 hover:bg-ivory hover:text-red"
-                          }`}
-                        >
-                          <span className="block text-sm font-medium">{label(gc)}</span>
-                          {desc(gc) && (
-                            <span className="block text-xs text-ink/45">{desc(gc)}</span>
-                          )}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ) : (
+
+        {/* Mega menu panel */}
+        <div
+          className={`invisible absolute inset-x-0 top-full z-50 translate-y-1 opacity-0 transition-all duration-200 ease-out ${openClasses}`}
+        >
+          <div className="border-t border-charcoal/10 bg-cream shadow-[0_24px_48px_-24px_rgba(26,23,20,0.35)]">
+            <div className="mx-auto grid max-w-page grid-cols-[300px_minmax(0,1fr)] gap-12 px-5 py-8 md:px-8">
+              {/* Featured card */}
+              {featured ? (
                 <Link
-                  key={child.href}
-                  href={child.href ?? "#"}
-                  className={`block rounded-md px-3 py-2 transition-colors ${
-                    isActive(child.href)
-                      ? "text-red"
-                      : "text-ink/85 hover:bg-ivory hover:text-red"
-                  }`}
+                  href={featured.href}
+                  className="group/card relative block aspect-[3/2] overflow-hidden rounded-xl bg-charcoal"
                 >
-                  <span className="block text-sm font-medium">{label(child)}</span>
-                  {desc(child) && (
-                    <span className="block text-xs text-ink/45">{desc(child)}</span>
-                  )}
+                  <Image
+                    src={featured.image}
+                    alt=""
+                    fill
+                    sizes="300px"
+                    quality={68}
+                    className="object-cover transition-transform duration-700 ease-out group-hover/card:scale-[1.04]"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-charcoal/75 via-charcoal/10 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-4">
+                    <span className="font-serif text-lg font-medium leading-tight text-cream">
+                      {pick(featured.mn, featured.en)}
+                    </span>
+                    <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-cream text-charcoal transition-transform duration-300 group-hover/card:translate-x-0.5">
+                      <svg
+                        viewBox="0 0 16 16"
+                        aria-hidden="true"
+                        className="h-4 w-4"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="1.6"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path d="M3 8h10M9 4l4 4-4 4" />
+                      </svg>
+                    </span>
+                  </div>
                 </Link>
-              )
-            )}
+              ) : (
+                <div />
+              )}
+
+              {/* Icon list, two columns */}
+              <ul className="grid grid-cols-2 content-start gap-x-8 gap-y-1">
+                {entries.map((child) => (
+                  <li key={child.href ?? child.mn}>
+                    <Link
+                      href={child.href ?? "#"}
+                      className={`flex items-center gap-4 rounded-lg px-3 py-3 transition-colors ${
+                        isActive(child.href)
+                          ? "text-red"
+                          : "text-ink hover:bg-ivory hover:text-red"
+                      }`}
+                    >
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center text-ink/70">
+                        <NavIcon name={child.icon} className="h-[22px] w-[22px]" />
+                      </span>
+                      <span className="min-w-0">
+                        <span className="block text-[15px] font-medium leading-snug">
+                          {label(child)}
+                        </span>
+                        {desc(child) && (
+                          <span className="mt-0.5 block text-xs leading-snug text-ink/45">
+                            {desc(child)}
+                          </span>
+                        )}
+                      </span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       </div>
@@ -159,14 +199,21 @@ export default function Header() {
         <li className={pad}>
           <Link
             href={item.href ?? "#"}
-            className={`block border-b border-charcoal/5 py-3 ${
+            className={`flex items-center gap-3 border-b border-charcoal/5 py-3 ${
               isActive(item.href) ? "text-red" : "text-ink"
             }`}
           >
-            <span className="block text-base font-medium">{label(item)}</span>
-            {depth > 0 && desc(item) && (
-              <span className="mt-0.5 block text-xs text-ink/45">{desc(item)}</span>
+            {depth > 0 && (
+              <span className="shrink-0 text-ink/60">
+                <NavIcon name={item.icon} className="h-5 w-5" />
+              </span>
             )}
+            <span className="min-w-0">
+              <span className="block text-base font-medium">{label(item)}</span>
+              {depth > 0 && desc(item) && (
+                <span className="mt-0.5 block text-xs text-ink/45">{desc(item)}</span>
+              )}
+            </span>
           </Link>
         </li>
       );
@@ -217,13 +264,13 @@ export default function Header() {
           : "bg-cream/60 backdrop-blur-sm"
       }`}
     >
-      <div className="mx-auto flex max-w-page items-center justify-between px-5 py-4 md:px-8">
-        <Link href="/" aria-label={t("nav.homeAria")} className="text-charcoal">
+      <div className="mx-auto flex max-w-[1400px] items-center justify-between px-5 py-4 md:px-8">
+        <Link href="/" aria-label={t("nav.homeAria")} className="shrink-0 text-charcoal">
           <Logo />
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden items-center gap-7 lg:flex">
+        <nav className="hidden items-center gap-5 xl:flex 2xl:gap-7">
           {NAV.map((item) => (
             <DesktopItem key={item.href ?? item.mn} item={item} />
           ))}
@@ -231,7 +278,7 @@ export default function Header() {
         </nav>
 
         {/* Mobile: language toggle + hamburger */}
-        <div className="flex items-center gap-3 lg:hidden">
+        <div className="flex items-center gap-3 xl:hidden">
           <LanguageToggle />
           <button
             type="button"
@@ -267,7 +314,7 @@ export default function Header() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-            className="overflow-hidden border-t border-charcoal/10 bg-cream lg:hidden"
+            className="overflow-hidden border-t border-charcoal/10 bg-cream xl:hidden"
           >
             <ul className="mx-auto flex max-w-page flex-col px-5 py-2">
               {NAV.map((item) => (

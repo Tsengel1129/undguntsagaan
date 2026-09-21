@@ -2,7 +2,7 @@
    One config per collection drives the list page, the edit form, the
    publish validation labels and the live preview card. */
 
-import { SECTION_OPTIONS } from "@/lib/columns";
+import { SECTION_OPTIONS } from "@/lib/sections";
 
 export type CollectionKey =
   | "racehorses"
@@ -99,7 +99,7 @@ export const COLLECTION_CONFIGS: Record<CollectionKey, CollectionConfig> = {
     fields: [
       { key: "name", label: "Гарчиг", type: "text", guideline: 70, section: "basic", requiredForPublish: true },
       { key: "term", label: "Монгол нэршил", type: "text", section: "basic" },
-      { key: "category", label: "Ангилал", type: "select", options: ["Belt knife set", "Snuff bottle", "Silverwork"], section: "basic" },
+      { key: "category", label: "Ангилал", type: "select", options: ["Хэт хутга", "Хөөрөг", "Мөнгөн эдлэл"], section: "basic" },
       { key: "material", label: "Материал", type: "text", section: "basic" },
       { key: "summary", label: "Товч тайлбар", type: "textarea", guideline: 160, section: "basic", requiredForPublish: true },
     ],
@@ -118,7 +118,7 @@ export const COLLECTION_CONFIGS: Record<CollectionKey, CollectionConfig> = {
       { key: "title", label: "Гарчиг", type: "text", guideline: 70, section: "basic", requiredForPublish: true },
       { key: "category", label: "Ангилал", type: "text", section: "basic", requiredForPublish: true },
       { key: "section", label: "Булан", type: "select", options: SECTION_OPTIONS, section: "basic" },
-      { key: "date", label: "Огноо (жишээ: June 2026)", type: "text", section: "basic" },
+      { key: "date", label: "Огноо (жишээ: 2026 оны 6-р сар)", type: "text", section: "basic" },
       { key: "author", label: "Зохиогч", type: "text", section: "basic" },
       { key: "readTime", label: "Унших хугацаа", type: "text", section: "basic" },
       { key: "excerpt", label: "Товч тайлбар", type: "textarea", guideline: 160, section: "basic", requiredForPublish: true },
@@ -159,7 +159,7 @@ export const COLLECTION_CONFIGS: Record<CollectionKey, CollectionConfig> = {
     imagesModel: "gallery",
     fields: [
       { key: "name", label: "Нэр", type: "text", guideline: 70, section: "basic", requiredForPublish: true },
-      { key: "category", label: "Ангилал", type: "select", options: ["Эм тариа", "Бусад бүтээгдэхүүн"], section: "basic", requiredForPublish: true },
+      { key: "category", label: "Ангилал", type: "select", options: ["Эм тариа", "Тэжээл", "Бусад бүтээгдэхүүн"], section: "basic", requiredForPublish: true },
       { key: "brand", label: "Бренд / үйлдвэрлэгч", type: "text", section: "basic" },
       { key: "price", label: "Үнэ (₮)", type: "number", section: "basic" },
       { key: "unit", label: "Хэмжих нэгж", type: "text", section: "basic" },

@@ -14,9 +14,10 @@ export const metadata: Metadata = {
 };
 
 const CATEGORIES = [
-  { href: "/shop/medicine", title: "Эрүүл мэнд & Эм тариа", desc: "Адууны эм, вакцин, тарианы бүтээгдэхүүн." },
+  { href: "/shop/medicine", title: "Малын эм тариа", desc: "Адууны эм, вакцин, тарианы бүтээгдэхүүн." },
+  { href: "/shop/feed", title: "Тэжээл", desc: "Адуу, малын тэжээл, нэмэлт тэжээл." },
   { href: "/shop/products", title: "Бусад бүтээгдэхүүн", desc: "Тоног хэрэгсэл болон холбогдох бараа." },
-  { href: "/shop/pharmacies", title: "Малын эмийн сангууд", desc: "Байршил, утас, цагийн хуваарь, газрын зураг." },
+  { href: "/shop/pharmacies", title: "Эмийн сангуудын хаяг, байршил", desc: "Байршил, утас, цагийн хуваарь, газрын зураг." },
 ];
 
 export default async function ShopPage() {
@@ -34,7 +35,7 @@ export default async function ShopPage() {
       <section className="mx-auto max-w-page space-y-14 px-5 py-16 md:px-8 md:py-24">
         <StockSearch stock={stock} />
 
-        <div className="grid gap-4 sm:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {CATEGORIES.map((c) => (
             <Link
               key={c.href}

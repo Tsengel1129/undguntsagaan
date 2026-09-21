@@ -7,9 +7,9 @@ import { getSiteTexts, listTrainers } from "@/lib/firebase/queries";
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: "Trainers",
+  title: "Уяач",
   description:
-    "Master Mongolian horse trainers — their provinces, experience and approach.",
+    "Монголын нэрт уяачид — аймаг, туршлага, уяа сойлтын арга барил.",
 };
 
 const ASPECTS = ["portrait", "landscape", "portrait"] as const;

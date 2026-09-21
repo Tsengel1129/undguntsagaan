@@ -313,7 +313,7 @@ export default function EditForm({
           ) : (
             <>
               <ImageRows
-                label="Нүүр зураг (lead)"
+                label="Нүүр зураг"
                 values={values.lead ? [String(values.lead)] : []}
                 onChange={(next) => update("lead", next[0] ?? "")}
                 single
@@ -321,7 +321,7 @@ export default function EditForm({
                 slug={effectiveSlug}
               />
               <ImageRows
-                label="Нийтлэл доторх зургууд (inline)"
+                label="Нийтлэл доторх зургууд"
                 values={(values.inlineImages as string[] | undefined) ?? []}
                 onChange={(next) => update("inlineImages", next)}
                 collection={collection}
@@ -346,7 +346,7 @@ export default function EditForm({
           {!config.noBody && (
           <div>
             <label className="mb-1.5 block text-sm font-medium text-charcoal">
-              Нийтлэлийн эх (body)
+              Нийтлэлийн эх
             </label>
             <TiptapEditor
               initial={(values.body as TiptapDoc) ?? null}

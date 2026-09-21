@@ -17,28 +17,31 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://undguntsagaan.mn"),
+  metadataBase: new URL("https://www.uhaantaimori.mn"),
   title: {
-    default: "Uhaantai Mori— Mongolian Horse Heritage Magazine",
-    template: "%s · Undgun Tsagaan",
+    default: "Ухаантай Морь — Монголын морин өвийн сэтгүүл",
+    template: "%s · Ухаантай Морь",
   },
   description:
-    "Uhaantai Mori(Ухаантай Морь) — Mongolia's magazine of racing bloodlines, master horse trainers and living heritage treasures.",
+    "«Ухаантай Морь» — хурдан морины удам угсаа, нэрт уяач, амьд өв уламжлалын тухай Монголын сэтгүүл.",
   keywords: [
+    "Монгол морь",
+    "хурдан морь",
+    "уяач",
+    "наадам",
+    "хэт хутга",
+    "хөөрөг",
+    "Монголын өв соёл",
+    "Ухаантай Морь",
     "Mongolian horses",
-    "racehorses",
-    "horse trainers",
-    "uyaach",
     "Naadam",
-    "het hutga",
-    "hoorog",
-    "Mongolian heritage",
   ],
   openGraph: {
-    title: "Uhaantai Mori— Mongolian Horse Heritage Magazine",
+    title: "Ухаантай Морь — Монголын морин өвийн сэтгүүл",
     description:
-      "Racing bloodlines, master trainers and living heritage of the Mongolian steppe.",
+      "Хурдан морины удам угсаа, нэрт уяач болон Монгол тал нутгийн амьд өв уламжлал.",
     type: "website",
+    locale: "mn_MN",
   },
 };
 
@@ -48,7 +51,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${manrope.variable}`}>
+    <html lang="mn" className={`${cormorant.variable} ${manrope.variable}`}>
       <body className="font-sans antialiased">{children}</body>
     </html>
   );

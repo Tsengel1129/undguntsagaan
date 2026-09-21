@@ -7,9 +7,9 @@ import { getSiteTexts, listRacehorses } from "@/lib/firebase/queries";
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: "Racehorses",
+  title: "Адуу",
   description:
-    "Fast-bloodline Mongolian racehorses — bloodlines, ages and racing achievements.",
+    "Монголын хурдан морьд — удам угсаа, нас, уралдааны амжилт.",
 };
 
 const ASPECTS = ["portrait", "landscape", "square"] as const;
@@ -62,7 +62,7 @@ export default async function RacehorsesPage({
                 image={second.images[0]}
                 eyebrow={second.bloodline}
                 title={second.name}
-                meta={`${second.region} · ${second.wins} wins`}
+                meta={`${second.region} · ${second.wins} түрүү`}
                 text={second.summary}
               />
             )}
@@ -78,7 +78,7 @@ export default async function RacehorsesPage({
                     title={h.name}
                     meta={`${h.region} · ${h.age}`}
                     text={h.summary}
-                    badge={`${h.wins} wins`}
+                    badge={`${h.wins} түрүү`}
                     aspect={ASPECTS[i % ASPECTS.length]}
                     delay={(i % 3) * 0.07}
                   />
@@ -92,7 +92,7 @@ export default async function RacehorsesPage({
                 image={wide.images[0]}
                 eyebrow={wide.bloodline}
                 title={wide.name}
-                meta={`${wide.region} · ${wide.wins} wins`}
+                meta={`${wide.region} · ${wide.wins} түрүү`}
                 text={wide.summary}
               />
             )}
@@ -108,7 +108,7 @@ export default async function RacehorsesPage({
                     title={h.name}
                     meta={`${h.region} · ${h.age}`}
                     text={h.summary}
-                    badge={`${h.wins} wins`}
+                    badge={`${h.wins} түрүү`}
                     aspect={ASPECTS[(i + 1) % ASPECTS.length]}
                     delay={(i % 3) * 0.07}
                   />
@@ -127,7 +127,7 @@ export default async function RacehorsesPage({
                 title={h.name}
                 meta={`${h.region} · ${h.age}`}
                 text={h.summary}
-                badge={`${h.wins} wins`}
+                badge={`${h.wins} түрүү`}
                 aspect={ASPECTS[i % ASPECTS.length]}
                 delay={(i % 3) * 0.07}
               />

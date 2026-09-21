@@ -137,7 +137,7 @@ export type ArticleDoc = PublishMeta & {
   title: string;
   category: string;
   /** Free-column section (Чөлөөт булан). Empty / "Сэтгүүл" = main magazine.
-     One of the COLUMN_SECTIONS values routes it into a column page. */
+     One of the SECTION_VALUES (lib/sections.ts) routes it into a булан page. */
   section?: string;
   date: string; // display date, e.g. "June 2026"
   author: string;

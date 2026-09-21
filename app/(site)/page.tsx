@@ -19,29 +19,29 @@ export default async function HomePage() {
   const PREVIEWS = [
     {
       href: "/racehorses",
-      eyebrow: "Racehorses",
-      title: "Racehorses",
+      eyebrow: "Адуу",
+      title: "Адуу",
       text: texts.homeTileRacehorses,
       image: previews.racehorse?.images[0],
     },
     {
       href: "/trainers",
-      eyebrow: "Trainers",
-      title: "Trainers",
+      eyebrow: "Уяач",
+      title: "Уяач",
       text: texts.homeTileTrainers,
       image: previews.trainer?.images[0],
     },
     {
       href: "/heritage",
-      eyebrow: "Heritage Treasures",
-      title: "Heritage Treasures",
+      eyebrow: "Өв соёл",
+      title: "Өв соёл",
       text: texts.homeTileHeritage,
       image: previews.treasure?.images[0],
     },
     {
       href: "/magazine",
-      eyebrow: "Magazine",
-      title: "Magazine",
+      eyebrow: "Сэтгүүл",
+      title: "Сэтгүүл",
       text: texts.homeTileMagazine,
       image: previews.article?.lead,
     },
@@ -158,7 +158,7 @@ export default async function HomePage() {
                   <h3 className="mt-2 font-serif text-3xl font-semibold text-cream">{p.title}</h3>
                   <p className="mt-2 max-w-md text-sm text-cream/75">{p.text}</p>
                   <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-red-soft">
-                    Read more
+                    Дэлгэрэнгүй
                     <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
                   </span>
                 </div>
@@ -181,7 +181,7 @@ export default async function HomePage() {
                 image={horseOfIssue.images[0]}
                 eyebrow={horseOfIssue.bloodline}
                 title={horseOfIssue.name}
-                meta={`${horseOfIssue.region} · ${horseOfIssue.wins} wins`}
+                meta={`${horseOfIssue.region} · ${horseOfIssue.wins} түрүү`}
                 text={horseOfIssue.summary}
               />
             </div>
@@ -204,7 +204,7 @@ export default async function HomePage() {
                 href="/magazine"
                 className="nav-underline hidden text-sm font-semibold text-ink hover:text-red md:inline-block"
               >
-                All articles →
+                {texts.homeLatestAll}
               </Link>
             </div>
           </Reveal>

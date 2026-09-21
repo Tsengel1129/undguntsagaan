@@ -3,47 +3,53 @@ import { notFound } from "next/navigation";
 import PageHeader from "@/components/PageHeader";
 import Pagination from "@/components/Pagination";
 import { StandardCard } from "@/components/editorial";
-import { COLUMN_SECTIONS, columnBySlug } from "@/lib/columns";
-import { listColumnArticles } from "@/lib/firebase/queries";
+import { SECTION_GROUPS, sectionBySlug } from "@/lib/sections";
+import { listSectionArticles } from "@/lib/firebase/queries";
 
 export const revalidate = 60;
+export const dynamicParams = false;
 
 const PER_PAGE = 6;
 
 export function generateStaticParams() {
-  return COLUMN_SECTIONS.map((c) => ({ section: c.slug }));
+  return SECTION_GROUPS.flatMap((g) =>
+    g.sections.map((s) => ({ group: g.slug, section: s.slug }))
+  );
 }
 
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<{ section: string }>;
+  params: Promise<{ group: string; section: string }>;
 }): Promise<Metadata> {
-  const { section } = await params;
-  const c = columnBySlug(section);
-  return { title: c ? c.mn : "Чөлөөт булан" };
+  const { group, section } = await params;
+  const found = sectionBySlug(group, section);
+  return found
+    ? { title: found.section.mn, description: found.section.descMn }
+    : { title: "Булан" };
 }
 
-export default async function ColumnSectionPage({
+export default async function SectionPage({
   params,
   searchParams,
 }: {
-  params: Promise<{ section: string }>;
+  params: Promise<{ group: string; section: string }>;
   searchParams: Promise<{ page?: string }>;
 }) {
-  const { section } = await params;
-  const c = columnBySlug(section);
-  if (!c) notFound();
+  const { group, section } = await params;
+  const found = sectionBySlug(group, section);
+  if (!found) notFound();
+  const { section: sec, group: grp } = found;
 
   const { page } = await searchParams;
-  const articles = await listColumnArticles(c.value);
+  const articles = await listSectionArticles(sec.value);
   const totalPages = Math.max(1, Math.ceil(articles.length / PER_PAGE));
   const current = Math.min(Math.max(1, Number(page) || 1), totalPages);
   const pageItems = articles.slice((current - 1) * PER_PAGE, current * PER_PAGE);
 
   return (
     <>
-      <PageHeader eyebrow="Чөлөөт булан" title={c.mn} intro={c.blurbMn} />
+      <PageHeader eyebrow={grp.mn} title={sec.mn} intro={sec.descMn} />
 
       <section className="mx-auto max-w-page space-y-12 px-5 py-16 md:px-8 md:py-24">
         {articles.length === 0 ? (
@@ -69,7 +75,7 @@ export default async function ColumnSectionPage({
         <Pagination
           current={current}
           total={totalPages}
-          basePath={`/column/${c.slug}`}
+          basePath={`/${grp.slug}/${sec.slug}`}
         />
       </section>
     </>

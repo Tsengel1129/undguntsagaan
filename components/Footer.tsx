@@ -60,9 +60,9 @@ export default async function Footer() {
       <div className="border-t border-cream/10">
         <div className="mx-auto flex max-w-page flex-col items-center justify-between gap-2 px-5 py-6 text-xs text-cream/50 md:flex-row md:px-8">
           <p>
-            © {2026} {site.name} - {site.nameMn}. All rights reserved.
+            © {2026} {site.nameMn} · {site.name}. Бүх эрх хуулиар хамгаалагдсан.
           </p>
-          <p>Mongolia's magazine of horse heritage.</p>
+          <p>Монголын морин өвийн сэтгүүл.</p>
         </div>
       </div>
     </footer>

@@ -21,7 +21,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const trainer = await getTrainer(slug);
-  if (!trainer) return { title: "Trainer not found" };
+  if (!trainer) return { title: "Уяач олдсонгүй" };
   return { title: trainer.name, description: trainer.summary };
 }
 
@@ -35,9 +35,9 @@ export default async function TrainerDetail({
   if (!trainer) notFound();
 
   const facts = [
-    { k: "Province", v: trainer.location },
-    { k: "Experience", v: trainer.years },
-    { k: "Speciality", v: trainer.specialty },
+    { k: "Аймаг", v: trainer.location },
+    { k: "Туршлага", v: trainer.years },
+    { k: "Мэргэшил", v: trainer.specialty },
   ];
 
   return (
@@ -57,7 +57,7 @@ export default async function TrainerDetail({
         <div className="mx-auto flex min-h-[60vh] max-w-page flex-col justify-end px-5 pb-12 pt-32 md:px-8 md:pb-16">
           <Reveal>
             <Link href="/trainers" className="text-sm font-semibold text-red-soft">
-              ← Trainers
+              ← Уяач
             </Link>
             <p className="eyebrow mt-4 text-xs text-gold-soft">
               {trainer.location} · {trainer.years}
@@ -80,7 +80,7 @@ export default async function TrainerDetail({
 
           <Reveal delay={0.1}>
             <aside className="h-fit rounded-sm border border-charcoal/10 bg-white p-7">
-              <h2 className="eyebrow text-xs text-red">At a glance</h2>
+              <h2 className="eyebrow text-xs text-red">Товч мэдээлэл</h2>
               <dl className="mt-4 space-y-3 text-sm">
                 {facts.map((f) => (
                   <div key={f.k} className="flex justify-between gap-4 border-b border-charcoal/5 pb-3">
@@ -95,7 +95,7 @@ export default async function TrainerDetail({
 
         {trainer.images.length > 1 && (
           <div className="mt-16">
-            <h2 className="mb-6 font-serif text-2xl font-semibold text-charcoal">In the stable</h2>
+            <h2 className="mb-6 font-serif text-2xl font-semibold text-charcoal">Зургийн цомог</h2>
             <Gallery images={trainer.images.slice(1)} alt={trainer.name} />
           </div>
         )}

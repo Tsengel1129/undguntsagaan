@@ -8,7 +8,7 @@ import type { SiteGeneralSettings } from "@/lib/firebase/types";
 const FIELDS: { key: keyof SiteGeneralSettings; label: string }[] = [
   { key: "name", label: "Нэр (латин)" },
   { key: "nameMn", label: "Нэр (монгол)" },
-  { key: "tagline", label: "Уриа (tagline)" },
+  { key: "tagline", label: "Уриа" },
   { key: "email", label: "И-мэйл" },
   { key: "phone", label: "Утас" },
   { key: "address", label: "Хаяг" },

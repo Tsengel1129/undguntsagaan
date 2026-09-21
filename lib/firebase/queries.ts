@@ -13,7 +13,7 @@ import { cache } from "react";
 import type { Timestamp } from "firebase-admin/firestore";
 import { getAdminDb } from "./admin";
 import { DEFAULT_TEXTS } from "@/lib/siteTexts";
-import { isColumnValue } from "@/lib/columns";
+import { isSectionValue } from "@/lib/sections";
 import {
   COLLECTIONS,
   type ArticleDoc,
@@ -153,9 +153,9 @@ export async function relatedArticles(slug: string, count = 3) {
   return all.filter((a) => a.slug !== slug).slice(0, count);
 }
 
-/** Main-magazine articles only — excludes anything routed to a Free column. */
+/** Plain magazine articles only — excludes anything routed to a булан section. */
 export const listMagazineArticles = async (): Promise<Article[]> =>
-  (await listArticles()).filter((a) => !isColumnValue(a.section));
+  (await listArticles()).filter((a) => !isSectionValue(a.section));
 
 /* ── Magazine issues (flipbook) ── */
 
@@ -200,8 +200,8 @@ export const searchStock = async (query: string): Promise<Stock[]> => {
   );
 };
 
-/** Articles belonging to one Free column, matched by its stored section value. */
-export const listColumnArticles = async (
+/** Articles belonging to one булан section, matched by its stored value. */
+export const listSectionArticles = async (
   sectionValue: string
 ): Promise<Article[]> =>
   (await listArticles()).filter((a) => a.section === sectionValue);
@@ -212,7 +212,7 @@ const DEFAULT_GENERAL: SiteGeneralSettings = {
   name: "Uhaantai Mori",
   nameMn: "Ухаантай Морь",
   tagline:
-    "Mongolia's magazine of racing bloodlines, master trainers and living heritage.",
+    "Хурдан морины удам угсаа, нэрт уяач, амьд өв уламжлалын тухай Монголын сэтгүүл.",
   email: "info@undguntsagaan.mn",
   phone: "88997733",
   address: "Baga Toiruu-20, P.O.Box 349, SBD - 8 khoroo, Ulaanbaatar 14200",

@@ -7,9 +7,9 @@ import { getSiteTexts, listMagazineArticles } from "@/lib/firebase/queries";
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: "Magazine",
+  title: "Сэтгүүл",
   description:
-    "Articles from Uhaantai Mori— stories on bloodlines, trainers, collectors and Mongolian horse heritage.",
+    "«Ухаантай Морь» сэтгүүлийн нийтлэлүүд — удам угсаа, уяач, цуглуулагч болон Монголын морин өвийн тухай.",
 };
 
 const PER_PAGE = 6;

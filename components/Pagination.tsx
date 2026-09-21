@@ -17,13 +17,13 @@ export default function Pagination({
     "inline-flex h-11 w-11 items-center justify-center border text-lg transition-colors";
   return (
     <nav
-      aria-label="Pagination"
+      aria-label="Хуудаслалт"
       className="flex items-center justify-center gap-5 pt-4"
     >
       {current > 1 ? (
         <Link
           href={href(current - 1)}
-          aria-label="Previous page"
+          aria-label="Өмнөх хуудас"
           className={`${btn} border-charcoal/20 text-charcoal hover:border-red hover:text-red`}
         >
           ←
@@ -39,7 +39,7 @@ export default function Pagination({
       {current < total ? (
         <Link
           href={href(current + 1)}
-          aria-label="Next page"
+          aria-label="Дараагийн хуудас"
           className={`${btn} border-charcoal/20 text-charcoal hover:border-red hover:text-red`}
         >
           →

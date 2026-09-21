@@ -21,7 +21,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const horse = await getRacehorse(slug);
-  if (!horse) return { title: "Racehorse not found" };
+  if (!horse) return { title: "Морь олдсонгүй" };
   return { title: horse.name, description: horse.summary };
 }
 
@@ -35,12 +35,12 @@ export default async function RacehorseDetail({
   if (!horse) notFound();
 
   const facts = [
-    { k: "Bloodline (udam)", v: horse.bloodline },
-    { k: "Age", v: horse.age },
-    { k: "Colour", v: horse.color },
-    { k: "Region", v: horse.region },
-    { k: "Career wins", v: String(horse.wins) },
-    { k: "Best result", v: horse.achievement },
+    { k: "Удам", v: horse.bloodline },
+    { k: "Нас", v: horse.age },
+    { k: "Зүс", v: horse.color },
+    { k: "Аймаг / бүс", v: horse.region },
+    { k: "Түрүүлсэн тоо", v: String(horse.wins) },
+    { k: "Гол амжилт", v: horse.achievement },
   ];
 
   return (
@@ -61,7 +61,7 @@ export default async function RacehorseDetail({
         <div className="mx-auto flex min-h-[60vh] max-w-page flex-col justify-end px-5 pb-12 pt-32 md:px-8 md:pb-16">
           <Reveal>
             <Link href="/racehorses" className="text-sm font-semibold text-red-soft">
-              ← Racehorses
+              ← Адуу
             </Link>
             <p className="eyebrow mt-4 text-xs text-gold-soft">{horse.bloodline}</p>
             <h1 className="mt-3 font-serif text-5xl font-semibold text-cream md:text-7xl">
@@ -84,7 +84,7 @@ export default async function RacehorseDetail({
           {/* Key facts */}
           <Reveal delay={0.1}>
             <aside className="h-fit rounded-sm border border-charcoal/10 bg-white p-7">
-              <h2 className="eyebrow text-xs text-red">Key facts</h2>
+              <h2 className="eyebrow text-xs text-red">Гол мэдээлэл</h2>
               <dl className="mt-4 space-y-3 text-sm">
                 {facts.map((f) => (
                   <div key={f.k} className="flex justify-between gap-4 border-b border-charcoal/5 pb-3">
@@ -100,7 +100,7 @@ export default async function RacehorseDetail({
         {/* Gallery */}
         {horse.images.length > 1 && (
           <div className="mt-16">
-            <h2 className="mb-6 font-serif text-2xl font-semibold text-charcoal">Gallery</h2>
+            <h2 className="mb-6 font-serif text-2xl font-semibold text-charcoal">Зургийн цомог</h2>
             <Gallery images={horse.images.slice(1)} alt={horse.name} />
           </div>
         )}

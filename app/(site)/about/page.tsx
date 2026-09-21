@@ -8,9 +8,9 @@ import { getSiteTexts } from "@/lib/firebase/queries";
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: "About",
+  title: "Бидний тухай",
   description:
-    "About Uhaantai Mori— Mongolia's magazine of racing bloodlines, master trainers and heritage treasures.",
+    "«Ухаантай Морь» сэтгүүлийн тухай — хурдан морины удам угсаа, нэрт уяач, өв эрдэнэсийн Монголын сэтгүүл.",
 };
 
 export default async function AboutPage() {
@@ -50,25 +50,25 @@ export default async function AboutPage() {
           <Reveal delay={0.1}>
             <aside className="space-y-8 rounded-sm border border-charcoal/10 bg-white p-8">
               <div>
-                <h2 className="eyebrow text-xs text-red">Our mission</h2>
+                <h2 className="eyebrow text-xs text-red">Эрхэм зорилго</h2>
                 <p className="mt-3 text-sm leading-relaxed text-ink/75">
                   {texts.abMissionText}
                 </p>
               </div>
               <div>
-                <h2 className="eyebrow text-xs text-red">What we cover</h2>
+                <h2 className="eyebrow text-xs text-red">Бидний сэдвүүд</h2>
                 <ul className="mt-3 space-y-2 text-sm text-ink/75">
-                  <li>· Racing bloodlines &amp; horses (морьд)</li>
-                  <li>· Master horse trainers (уяачид)</li>
-                  <li>· Heritage treasures (хэт хутга, хөөрөг)</li>
-                  <li>· Long-form magazine features</li>
+                  <li>· Хурдан морьд, удам угсаа</li>
+                  <li>· Нэрт уяачид</li>
+                  <li>· Өв эрдэнэс (хэт хутга, хөөрөг)</li>
+                  <li>· Сэтгүүлийн дэлгэрэнгүй нийтлэлүүд</li>
                 </ul>
               </div>
               <Link
                 href="/contact"
                 className="inline-flex items-center gap-2 bg-red px-6 py-3 text-sm font-semibold text-cream transition-colors hover:bg-red-deep"
               >
-                Work with us →
+                Хамтран ажиллах →
               </Link>
             </aside>
           </Reveal>

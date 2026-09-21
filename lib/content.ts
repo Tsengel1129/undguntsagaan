@@ -25,7 +25,7 @@ export const SITE = {
   name: "Uhaantai Mori",
   nameMn: "Ухаантай Морь",
   tagline:
-    "Mongolia's magazine of racing bloodlines, master trainers and living heritage.",
+    "Хурдан морины удам угсаа, нэрт уяач, амьд өв уламжлалын тухай Монголын сэтгүүл.",
   email: "info@undguntsagaan.mn",
   phone: "88997733",
   address: "Baga Toiruu-20, P.O.Box 349, SBD - 8 khoroo, Ulaanbaatar 14200",

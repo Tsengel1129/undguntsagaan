@@ -155,8 +155,8 @@ export async function publishItem(
       const images = (item.images as string[] | undefined) ?? [];
       if (images.length === 0) missing.push("Зураг");
     } else {
-      if (!String(item.lead ?? "").trim()) missing.push("Нүүр зураг (lead)");
-      if (docIsEmpty(item.body)) missing.push("Нийтлэлийн эх (body)");
+      if (!String(item.lead ?? "").trim()) missing.push("Нүүр зураг");
+      if (docIsEmpty(item.body)) missing.push("Нийтлэлийн эх");
     }
     if (missing.length > 0) {
       return { ok: false, error: `Дутуу талбарууд: ${missing.join(", ")}` };

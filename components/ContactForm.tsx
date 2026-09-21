@@ -18,17 +18,17 @@ export default function ContactForm() {
   if (sent) {
     return (
       <div className="rounded-sm border border-red/30 bg-white p-8 text-center">
-        <p className="font-serif text-2xl text-charcoal">Thank you.</p>
+        <p className="font-serif text-2xl text-charcoal">Баярлалаа.</p>
         <p className="mt-2 text-sm text-ink/70">
-          Your message has been noted. (This form is a placeholder and does not
-          send email yet.)
+          Таны захидлыг хүлээн авлаа. (Энэ форм түр зуурынх бөгөөд одоогоор
+          и-мэйл илгээхгүй.)
         </p>
         <button
           type="button"
           onClick={() => setSent(false)}
           className="mt-5 text-sm font-semibold text-red"
         >
-          Send another message
+          Дахин захидал илгээх
         </button>
       </div>
     );
@@ -38,27 +38,27 @@ export default function ContactForm() {
     <form onSubmit={handleSubmit} className="space-y-5">
       <div>
         <label htmlFor="name" className="mb-2 block text-sm font-medium text-ink">
-          Name
+          Нэр
         </label>
-        <input id="name" name="name" type="text" required className={field} placeholder="Your name" />
+        <input id="name" name="name" type="text" required className={field} placeholder="Таны нэр" />
       </div>
       <div>
         <label htmlFor="email" className="mb-2 block text-sm font-medium text-ink">
-          Email
+          И-мэйл
         </label>
-        <input id="email" name="email" type="email" required className={field} placeholder="you@example.com" />
+        <input id="email" name="email" type="email" required className={field} placeholder="tanii@mail.mn" />
       </div>
       <div>
         <label htmlFor="message" className="mb-2 block text-sm font-medium text-ink">
-          Message
+          Захидал
         </label>
-        <textarea id="message" name="message" rows={5} required className={field} placeholder="How can we help?" />
+        <textarea id="message" name="message" rows={5} required className={field} placeholder="Бид танд хэрхэн туслах вэ?" />
       </div>
       <button
         type="submit"
         className="inline-flex items-center gap-2 bg-red px-7 py-3.5 text-sm font-semibold tracking-wide text-cream transition-colors hover:bg-red-deep"
       >
-        Send message →
+        Захидал илгээх →
       </button>
     </form>
   );

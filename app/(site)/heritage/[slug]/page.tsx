@@ -21,7 +21,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const item = await getTreasure(slug);
-  if (!item) return { title: "Treasure not found" };
+  if (!item) return { title: "Эрдэнэс олдсонгүй" };
   return { title: `${item.name} (${item.term})`, description: item.summary };
 }
 
@@ -35,9 +35,9 @@ export default async function HeritageDetail({
   if (!item) notFound();
 
   const facts = [
-    { k: "Mongolian term", v: item.term },
-    { k: "Category", v: item.category },
-    { k: "Materials", v: item.material },
+    { k: "Монгол нэршил", v: item.term },
+    { k: "Ангилал", v: item.category },
+    { k: "Материал", v: item.material },
   ];
 
   return (
@@ -57,7 +57,7 @@ export default async function HeritageDetail({
         <div className="mx-auto flex min-h-[58vh] max-w-page flex-col justify-end px-5 pb-12 pt-32 md:px-8 md:pb-16">
           <Reveal>
             <Link href="/heritage" className="text-sm font-semibold text-gold-soft">
-              ← Heritage Treasures
+              ← Өв соёл
             </Link>
             <p className="eyebrow mt-4 text-xs text-gold-soft">{item.category}</p>
             <h1 className="mt-3 font-serif text-5xl font-semibold text-cream md:text-7xl">
@@ -81,7 +81,7 @@ export default async function HeritageDetail({
 
           <Reveal delay={0.1}>
             <aside className="h-fit rounded-sm border border-gold/30 bg-white p-7">
-              <h2 className="eyebrow text-xs text-gold-deep">Details</h2>
+              <h2 className="eyebrow text-xs text-gold-deep">Дэлгэрэнгүй</h2>
               <dl className="mt-4 space-y-3 text-sm">
                 {facts.map((f) => (
                   <div key={f.k} className="flex justify-between gap-4 border-b border-gold/15 pb-3">
@@ -96,7 +96,7 @@ export default async function HeritageDetail({
 
         {item.images.length > 1 && (
           <div className="mt-16">
-            <h2 className="mb-6 font-serif text-2xl font-semibold text-charcoal">Gallery</h2>
+            <h2 className="mb-6 font-serif text-2xl font-semibold text-charcoal">Зургийн цомог</h2>
             <Gallery images={item.images.slice(1)} alt={item.name} />
           </div>
         )}

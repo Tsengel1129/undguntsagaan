@@ -60,7 +60,7 @@ export function FeatureCard({
           </h2>
           <p className="mt-3 max-w-xl text-sm text-cream/80 line-clamp-3 md:text-base">{text}</p>
           <span className={`mt-5 inline-flex items-center gap-2 text-sm font-semibold ${accentText(accent)}`}>
-            Read more
+            Дэлгэрэнгүй
             <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
           </span>
         </div>
@@ -113,7 +113,7 @@ export function WideCard({
           {meta && <p className="mt-1 text-xs text-ink/50 line-clamp-1">{meta}</p>}
           <p className="mt-3 text-sm leading-relaxed text-ink/70 line-clamp-3">{text}</p>
           <span className={`mt-4 inline-flex items-center gap-2 text-sm font-semibold ${accent === "gold" ? "text-gold-deep" : "text-red"}`}>
-            Read more
+            Дэлгэрэнгүй
             <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
           </span>
         </div>

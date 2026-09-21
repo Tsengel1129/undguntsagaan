@@ -1,7 +1,7 @@
 /* Editable site chrome texts (headers, buttons, section headings) + the
    homepage hero image. Values live in Firestore `siteSettings/texts`;
-   anything unset falls back to these defaults (= the site's original copy),
-   so a fresh project renders identically with no seed step.
+   anything unset falls back to these defaults (Mongolian, the site's
+   primary language), so a fresh project renders correctly with no seed step.
    Client-safe: no server imports. */
 
 export type TextField = {
@@ -15,10 +15,10 @@ export type TextGroup = { title: string; fields: TextField[] };
 
 export const TEXT_GROUPS: TextGroup[] = [
   {
-    title: "Нүүр хуудас — дээд хэсэг (hero)",
+    title: "Нүүр хуудас — дээд хэсэг",
     fields: [
       { key: "homeHeroImage", label: "Нүүрний том зураг", image: true },
-      { key: "homeHeroEyebrow", label: "Жижиг гарчиг (eyebrow)" },
+      { key: "homeHeroEyebrow", label: "Жижиг гарчиг" },
       { key: "homeHeroTitle", label: "Том гарчиг" },
       { key: "homeCtaPrimary", label: "Улаан товчны бичиг" },
       { key: "homeCtaSecondary", label: "Хүрээтэй товчны бичиг" },
@@ -31,13 +31,13 @@ export const TEXT_GROUPS: TextGroup[] = [
       { key: "homeStatsHorses", label: "Статистик: морьдын шошго" },
       { key: "homeStatsTrainers", label: "Статистик: уяачдын шошго" },
       { key: "homeStatsArticles", label: "Статистик: нийтлэлийн шошго" },
-      { key: "homeExploreEyebrow", label: "«Explore» жижиг гарчиг" },
-      { key: "homeExploreHeading", label: "«Explore» том гарчиг" },
+      { key: "homeExploreEyebrow", label: "«Танилцах» хэсгийн жижиг гарчиг" },
+      { key: "homeExploreHeading", label: "«Танилцах» хэсгийн том гарчиг" },
       { key: "homeTileRacehorses", label: "Морьдын хавтангийн тайлбар", multiline: true },
       { key: "homeTileTrainers", label: "Уяачдын хавтангийн тайлбар", multiline: true },
       { key: "homeTileHeritage", label: "Өв соёлын хавтангийн тайлбар", multiline: true },
       { key: "homeTileMagazine", label: "Сэтгүүлийн хавтангийн тайлбар", multiline: true },
-      { key: "homeHorseOfIssue", label: "«Horse of the issue» шошго" },
+      { key: "homeHorseOfIssue", label: "«Дугаарын морь» шошго" },
       { key: "homeLatestEyebrow", label: "Сүүлийн нийтлэл — жижиг гарчиг" },
       { key: "homeLatestHeading", label: "Сүүлийн нийтлэл — том гарчиг" },
       { key: "homeLatestAll", label: "«Бүх нийтлэл» холбоосны бичиг" },
@@ -46,7 +46,7 @@ export const TEXT_GROUPS: TextGroup[] = [
     ],
   },
   {
-    title: "Хурдан морьд — хуудасны толгой",
+    title: "Адуу — хуудасны толгой",
     fields: [
       { key: "rhEyebrow", label: "Жижиг гарчиг" },
       { key: "rhTitle", label: "Гарчиг" },
@@ -62,7 +62,7 @@ export const TEXT_GROUPS: TextGroup[] = [
     ],
   },
   {
-    title: "Өв соёлын эрдэнэс — хуудасны толгой",
+    title: "Өв соёл — хуудасны толгой",
     fields: [
       { key: "hgEyebrow", label: "Жижиг гарчиг" },
       { key: "hgTitle", label: "Гарчиг" },
@@ -78,7 +78,7 @@ export const TEXT_GROUPS: TextGroup[] = [
     ],
   },
   {
-    title: "Бидний тухай (About)",
+    title: "Бидний тухай",
     fields: [
       { key: "abEyebrow", label: "Жижиг гарчиг" },
       { key: "abTitle", label: "Гарчиг" },
@@ -91,7 +91,7 @@ export const TEXT_GROUPS: TextGroup[] = [
     ],
   },
   {
-    title: "Холбоо барих (Contact)",
+    title: "Холбоо барих",
     fields: [
       { key: "ctEyebrow", label: "Жижиг гарчиг" },
       { key: "ctTitle", label: "Гарчиг" },
@@ -102,65 +102,65 @@ export const TEXT_GROUPS: TextGroup[] = [
 
 export const DEFAULT_TEXTS: Record<string, string> = {
   homeHeroImage: "/images/hero.jpg",
-  homeHeroEyebrow: "Ухаантай Морь · Mongolian Horse Heritage",
-  homeHeroTitle: "Undgun Tsagaan",
-  homeCtaPrimary: "Read the Magazine",
-  homeCtaSecondary: "Meet the Horses",
+  homeHeroEyebrow: "Ухаантай Морь · Морин өвийн сэтгүүл",
+  homeHeroTitle: "Ухаантай Морь",
+  homeCtaPrimary: "Сэтгүүл унших",
+  homeCtaSecondary: "Морьдтой танилцах",
   homeIntroHeading:
-    "A magazine devoted to the horse, the trainer and the heritage of the Mongolian steppe.",
-  homeStatsHorses: "Featured horses",
-  homeStatsTrainers: "Master trainers",
-  homeStatsArticles: "Magazine features",
-  homeExploreEyebrow: "Explore",
-  homeExploreHeading: "Four ways into the world of Undgun Tsagaan",
+    "Монгол тал нутгийн морь, уяач, өв уламжлалд зориулсан сэтгүүл.",
+  homeStatsHorses: "Онцлох морьд",
+  homeStatsTrainers: "Нэрт уяачид",
+  homeStatsArticles: "Сэтгүүлийн нийтлэл",
+  homeExploreEyebrow: "Танилцах",
+  homeExploreHeading: "Ухаантай Морийн ертөнц рүү нэвтрэх дөрвөн зам",
   homeTileRacehorses:
-    "Fast-bloodline horses and the udam that produced this season's champions.",
+    "Хурдан морьд болон энэ улирлын түрүү аваргуудыг төрүүлсэн удам угсаа.",
   homeTileTrainers:
-    "The master trainers whose patient daily craft turns colts into champions.",
+    "Унага, даагыг өдөр тутмын тэвчээртэй хөдөлмөрөөрөө түрүү болгодог нэрт уяачид.",
   homeTileHeritage:
-    "Belt knife sets, carved snuff bottles and the silverwork of the steppe.",
+    "Хэт хутга, сийлбэртэй хөөрөг болон тал нутгийн мөнгөн урлал.",
   homeTileMagazine:
-    "Long-form stories on bloodlines, trainers, collectors and craft.",
-  homeHorseOfIssue: "Horse of the issue",
-  homeLatestEyebrow: "From the magazine",
-  homeLatestHeading: "Latest stories",
-  homeLatestAll: "All articles →",
-  homeCtaBandHeading: "Have a horse, a trainer or a treasure worth featuring?",
-  homeCtaBandButton: "Get in touch →",
-  rhEyebrow: "Racehorses",
-  rhTitle: "The fastest bloodlines on the steppe",
+    "Удам угсаа, уяач, цуглуулагч, урлалын тухай өргөн дэлгэрэнгүй нийтлэлүүд.",
+  homeHorseOfIssue: "Дугаарын морь",
+  homeLatestEyebrow: "Сэтгүүлээс",
+  homeLatestHeading: "Сүүлийн нийтлэлүүд",
+  homeLatestAll: "Бүх нийтлэл →",
+  homeCtaBandHeading: "Онцлууштай морь, уяач эсвэл өв эрдэнэс байна уу?",
+  homeCtaBandButton: "Холбогдох →",
+  rhEyebrow: "Адуу",
+  rhTitle: "Тал нутгийн хамгийн хурдан удам угсаа",
   rhIntro:
-    "A selection of racing horses celebrated for their bloodline (udam), their speed and their record across Naadam and provincial races.",
-  trEyebrow: "Trainers",
-  trTitle: "The masters behind the champions",
+    "Удам угсаа, хурд, наадам болон аймгийн уралдааны амжилтаараа алдаршсан хурдан морьдын түүвэр.",
+  trEyebrow: "Уяач",
+  trTitle: "Түрүү морьдын ард буй нэрт уяачид",
   trIntro:
-    "The trainers (уяачид) whose patience, instinct and decades of experience shape the racing horses of Mongolia.",
-  hgEyebrow: "Heritage Treasures",
-  hgTitle: "Living treasures of the Mongolian steppe",
+    "Тэвчээр, зөн совин, олон арван жилийн туршлагаараа Монголын хурдан морьдыг сойж бэлтгэдэг уяачид.",
+  hgEyebrow: "Өв соёл",
+  hgTitle: "Монгол тал нутгийн амьд өв эрдэнэс",
   hgIntro:
-    "Beyond the racetrack, Mongolia's heritage lives in objects of quiet luxury — belt knife sets (хэт хутга), carved snuff bottles (хөөрөг) and heirloom silverwork, each carrying generations of craft and meaning.",
-  mgEyebrow: "Magazine",
-  mgTitle: "Stories from the steppe",
+    "Уралдааны талбайгаас гадна Монголын өв соёл нам гүм тансаг эдлэлд амьдарна — хэт хутга, сийлбэртэй хөөрөг, үеэс үед уламжлагдсан мөнгөн урлал бүр олон үеийн ур чадвар, утга учрыг тээж явдаг.",
+  mgEyebrow: "Сэтгүүл",
+  mgTitle: "Тал нутгийн түүхүүд",
   mgIntro:
-    "Long-form articles on racing bloodlines, master trainers, heritage craft and the people who keep these traditions alive.",
-  abEyebrow: "About",
-  abTitle: "Mongolia's magazine of horse and heritage",
+    "Хурдан морины удам угсаа, нэрт уяач, өв соёлын урлал болон эдгээр уламжлалыг амьд авч явагч хүмүүсийн тухай өргөн дэлгэрэнгүй нийтлэлүүд.",
+  abEyebrow: "Бидний тухай",
+  abTitle: "Монголын морь, өв соёлын сэтгүүл",
   abIntro:
-    "Uhaantai Mori(Ухаантай Морь) celebrates the racing horse, the master trainer and the living heritage of the Mongolian steppe.",
+    "«Ухаантай Морь» сэтгүүл Монгол тал нутгийн хурдан морь, нэрт уяач, амьд өв уламжлалыг алдаршуулна.",
   abImage:
     "https://images.unsplash.com/photo-1695555875394-4e8aa542ccdc?auto=format&fit=crop&w=2000&q=80",
   abBody1:
-    "For generations, the horse has stood at the centre of Mongolian life — a source of pride, livelihood and identity. Uhaantai Moriexists to document that world with the care it deserves: the bloodlines that produce champions, the trainers who shape them, and the heritage objects that surround the culture of the horse.",
+    "Морь бол олон үеийн турш монгол хүний амьдралын төв байсаар ирсэн — бахархал, амьжиргаа, өөрийн байдлын эх сурвалж. «Ухаантай Морь» тэрхүү ертөнцийг зохих хүндэтгэл, анхаарлаар баримтжуулахын тулд бий болсон: аварга төрүүлдэг удам угсаа, тэднийг сойж бэлтгэдэг уяачид, морин соёлыг хүрээлсэн өв эрдэнэсийн эдлэлүүд.",
   abBody2:
-    "In each issue we profile racing horses and the udam behind their speed, sit down with the уяач who train them, and look closely at the craft of хэт хутга knife sets, carved хөөрөг snuff bottles and heirloom silverwork. Our aim is to record these traditions honestly and to share them with readers in Mongolia and far beyond.",
+    "Дугаар бүртээ бид хурдан морьд болон тэдний хурдны ард буй удам угсааг танилцуулж, тэднийг уядаг уяачидтай ярилцаж, хэт хутга, сийлбэртэй хөөрөг, уламжлалт мөнгөн урлалын ур чадварыг нягтлан хардаг. Бидний зорилго бол эдгээр уламжлалыг үнэнчээр тэмдэглэн, Монголын болон дэлхийн уншигчидтай хуваалцах явдал юм.",
   abBody3:
-    "We believe heritage is not something kept behind glass. It is ridden across the steppe, carried on the belt and passed between generations. Uhaantai Moriis our contribution to keeping that living tradition visible.",
+    "Өв соёл бол шилэн хайрцагт хадгалагддаг зүйл биш гэдэгт бид итгэдэг. Түүнийг тал нутгаар унаж, бүсэндээ зүүж, үеэс үед уламжлуулдаг. «Ухаантай Морь» бол тэрхүү амьд уламжлалыг ил тод харагдуулахад оруулж буй бидний хувь нэмэр.",
   abMissionText:
-    "To celebrate and preserve the heritage of the Mongolian horse — its bloodlines, its trainers and its treasures — for a global audience.",
-  ctEyebrow: "Contact",
-  ctTitle: "Get in touch",
+    "Монгол морины өв — удам угсаа, уяач, эрдэнэсийг нь — дэлхийн уншигчдад алдаршуулж, хадгалан хамгаалах.",
+  ctEyebrow: "Холбоо барих",
+  ctTitle: "Бидэнтэй холбогдоорой",
   ctIntro:
-    "Have a horse, a trainer or a heritage treasure to share — or a question about the magazine? We would love to hear from you.",
+    "Хуваалцах морь, уяач, өв эрдэнэс байна уу, эсвэл сэтгүүлийн талаар асуух зүйл байна уу? Бид таны саналыг хүлээн авахад баяртай байх болно.",
 };
 
 export const TEXT_KEYS = Object.keys(DEFAULT_TEXTS);

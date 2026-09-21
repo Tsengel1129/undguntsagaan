@@ -31,7 +31,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const article = await getArticle(slug);
-  if (!article) return { title: "Article not found" };
+  if (!article) return { title: "Нийтлэл олдсонгүй" };
   return { title: article.title, description: article.excerpt };
 }
 
@@ -117,7 +117,7 @@ export default async function ArticleDetail({
 
         <div className="mt-12 border-t border-charcoal/10 pt-6">
           <Link href="/magazine" className="text-sm font-semibold text-red">
-            ← Back to all articles
+            ← Бүх нийтлэл рүү буцах
           </Link>
         </div>
       </div>
@@ -128,7 +128,7 @@ export default async function ArticleDetail({
           <div className="mx-auto max-w-page px-5 py-16 md:px-8 md:py-20">
             <Reveal>
               <h2 className="font-serif text-2xl font-semibold text-charcoal md:text-3xl">
-                Related articles
+                Холбоотой нийтлэлүүд
               </h2>
             </Reveal>
             <div className="mt-8 grid gap-8 md:grid-cols-3">

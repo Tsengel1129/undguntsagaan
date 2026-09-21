@@ -7,9 +7,9 @@ import { getSiteTexts, listTreasures } from "@/lib/firebase/queries";
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: "Heritage Treasures",
+  title: "Өв соёл",
   description:
-    "Traditional Mongolian heritage treasures — belt knife sets (хэт хутга), snuff bottles (хөөрөг) and heirloom silverwork.",
+    "Монголын уламжлалт өв эрдэнэс — хэт хутга, хөөрөг болон үеэс үед уламжлагдсан мөнгөн урлал.",
 };
 
 /* Heritage = traditional Mongolian valuables (NOT Western jewelry). */
