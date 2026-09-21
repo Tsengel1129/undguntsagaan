@@ -215,7 +215,7 @@ const DEFAULT_GENERAL: SiteGeneralSettings = {
     "Хурдан морины удам угсаа, нэрт уяач, амьд өв уламжлалын тухай Монголын сэтгүүл.",
   email: "info@undguntsagaan.mn",
   phone: "88997733",
-  address: "Baga Toiruu-20, P.O.Box 349, SBD - 8 khoroo, Ulaanbaatar 14200",
+  address: "Бага тойруу-20, Ш/Х 349, СБД, 8-р хороо, Улаанбаатар 14200",
 };
 
 const DEFAULT_HOMEPAGE: HomepageSettings = {

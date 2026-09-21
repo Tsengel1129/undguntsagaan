@@ -19,11 +19,11 @@
      Same body conversion.
 
    • TREASURES: Treasure[]    → collection `treasures`, doc ID = slug.
-     Fields: name, term, category ("Belt knife set" | "Snuff bottle" |
-     "Silverwork"), material, summary, body, images[]. Same body conversion.
+     Fields: name, term, category ("Хэт хутга" | "Хөөрөг" |
+     "Мөнгөн эдлэл"), material, summary, body, images[]. Same body conversion.
 
    • ARTICLES: Article[]      → collection `articles`, doc ID = slug.
-     Fields: title, category, date (display string, e.g. "June 2026"), author,
+     Fields: title, category, date (display string, e.g. "2026 оны 6-р сар"), author,
      readTime, excerpt, lead (hero image URL), body, pullQuote, inlineImages[].
      `body: string[]` (5 paragraphs woven around FloatImage / PullQuote /
      SplitImages on /magazine/[slug]) → `body: TiptapDoc`. `pullQuote` and
@@ -119,7 +119,7 @@ export type TrainerDoc = PublishMeta & {
   images: string[];
 };
 
-export type TreasureCategory = "Belt knife set" | "Snuff bottle" | "Silverwork";
+export type TreasureCategory = "Хэт хутга" | "Хөөрөг" | "Мөнгөн эдлэл";
 
 export type TreasureDoc = PublishMeta & {
   slug: string;

@@ -37,3 +37,6 @@ next-env.d.ts
 firestore-debug.log
 ui-debug.log
 .env*
+
+# Firestore content snapshots
+/backups/
